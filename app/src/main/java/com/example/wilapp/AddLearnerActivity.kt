@@ -7,7 +7,6 @@ import com.example.wilapp.databinding.ActivityAddLearnerBinding
 class AddLearnerActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityAddLearnerBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddLearnerBinding.inflate(layoutInflater)
