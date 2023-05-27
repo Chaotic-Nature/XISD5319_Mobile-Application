@@ -5,43 +5,34 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import com.example.wilapp.databinding.ActivityMainBinding
+
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        val LoginBtn = findViewById<Button>(R.id.LoginBtn)
-        LoginBtn.setOnClickListener {
 
-            val Intent = Intent(this, HomePage::class.java)
-            startActivity(Intent)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-            callActivitypoop()
+        binding.imageButton.setOnClickListener{
 
+            val intent = Intent(this , SignUp::class.java)
+            startActivity(intent)
         }
+
+        binding.imageButton2.setOnClickListener{
+
+            val intent = Intent(this , Login::class.java)
+            startActivity(intent)
+        }
+
+
 
     }
 
-
-
-    private fun callActivitypoop () {
-        //for 1
-        val UserName = findViewById<EditText>(R.id.UserName)
-        val message = UserName.text.toString()
-
-
-
-        val intent = Intent(this,HomePage::class.java).also {
-
-            it.putExtra("EXTRA_MESSAGE",message)
-
-
-
-
-            startActivity(it)
-        }
-
     }
 
-}

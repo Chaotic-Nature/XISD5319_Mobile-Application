@@ -12,6 +12,12 @@
         android:theme="@style/Theme.WilApp"
         tools:targetApi="31">
         <activity
+            android:name=".Login"
+            android:exported="false" />
+        <activity
+            android:name=".SignUp"
+            android:exported="false" />
+        <activity
             android:name=".ViewNew"
             android:exported="false" />
         <activity
