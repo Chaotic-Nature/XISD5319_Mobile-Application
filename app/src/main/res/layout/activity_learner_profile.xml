@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="20dp"
+        tools:context=".LearnerProfileActivity">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Learner Information"
+            android:textColor="@color/green"
+            android:textSize="20sp" />
+
+        <View
+            android:id="@+id/divider1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/green" />
+
+        <TextView
+            android:id="@+id/nameTv"
+            style="@style/LearnerInformationText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Cibrian Hofsta" />
+
+        <TextView
+            android:id="@+id/ageTv"
+            style="@style/LearnerInformationText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="22" />
+
+        <TextView
+            android:id="@+id/sexTv"
+            style="@style/LearnerInformationText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="M" />
+
+        <TextView
+            android:id="@+id/idTv"
+            style="@style/LearnerInformationText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="0101035298088" />
+
+        <TextView
+            android:id="@+id/schoolTv"
+            style="@style/LearnerInformationText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Malibu High School" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Screening"
+            android:textColor="@color/green"
+            android:textSize="20sp" />
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/green" />
+
+        <TextView
+            android:id="@+id/screeningResultsTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="No screening information"
+            android:textColor="#474747" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <Button
+                android:id="@+id/addScreeningBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#C6FFBA"
+                android:text="Add"
+                android:textColor="@color/green"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/editScreeningBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:backgroundTint="#C6FFBA"
+                android:text="Edit"
+                android:textColor="@color/green"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Procedures"
+            android:textColor="@color/green"
+            android:textSize="20sp" />
+
+        <View
+            android:id="@+id/divider3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/green" />
+
+        <TextView
+            android:id="@+id/proceduresResultsTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="No screening information"
+            android:textColor="#474747" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <Button
+                android:id="@+id/addProcedureBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:backgroundTint="#C6FFBA"
+                android:text="Add"
+                android:textColor="@color/green"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/editProcedureBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:background="@null"
+                android:backgroundTint="#C6FFBA"
+                android:text="Edit"
+                android:textColor="@color/green"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/divider4"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/green" />
+
+        <Button
+            android:id="@+id/returnBtn"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/green"
+            android:backgroundTintMode="src_over"
+            android:text="Return"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+    </LinearLayout>
+</ScrollView>
