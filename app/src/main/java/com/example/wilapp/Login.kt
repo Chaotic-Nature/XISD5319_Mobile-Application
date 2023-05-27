@@ -3,6 +3,7 @@ package com.example.wilapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
+import android.widget.Button
 import android.widget.Toast
 import com.example.wilapp.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -24,11 +25,10 @@ class Login : AppCompatActivity() {
 
         firebaseAuth = FirebaseAuth.getInstance()
 
-        binding.button3.setOnClickListener {
-
-            val intent = Intent(this , SignUp::class.java)
-            startActivity(intent)
-
+        val CreateAcc = findViewById<Button>(R.id.button3)
+        CreateAcc.setOnClickListener {
+            val Intent = Intent(this, SignUp::class.java)
+            startActivity(Intent)
 
         }
 
