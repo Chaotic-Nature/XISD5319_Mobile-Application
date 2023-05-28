@@ -1,10 +1,21 @@
 package com.example.wilapp
 
-data class LearnerModel(
-    val id : String,
-    val name : String,
-    val surname : String,
-    val age : Int,
-    val sex : String,
-    val school : String
-)
+class LearnerModel():java.io.Serializable {
+    lateinit var id : String
+    lateinit var name : String
+    lateinit var surname : String
+    var age : Int = 0
+    lateinit var sex : String
+    lateinit var school : String
+
+    constructor(lId : String, lName : String, lSurname : String,
+                lAge : Int, lSex : String, lSchool : String) : this() {
+        id = lId
+        name = lName
+        surname = lSurname
+        age = lAge
+        sex = lSex
+        school = lSchool
+
+    }
+}
