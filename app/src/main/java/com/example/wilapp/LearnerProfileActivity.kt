@@ -37,6 +37,7 @@ class LearnerProfileActivity : AppCompatActivity() {
                 }
             }
 
+
             override fun onCancelled(error: DatabaseError) {
                 Toast.makeText(this@LearnerProfileActivity,
                     "Failed to read value. ${error.toException()}", Toast.LENGTH_LONG).show()
