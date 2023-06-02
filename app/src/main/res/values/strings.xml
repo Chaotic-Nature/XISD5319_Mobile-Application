@@ -1,3 +1,26 @@
 <resources>
-    <string name="app_name">WilApp</string>
+    <!-- Screening Questions -->
+    <array name="questions">
+
+    </array>
+    <!-- Eye Questions -->
+    <string name="q1.1">1. Do you experience blurry vision or have difficulty focusing on objects?</string>
+    <string name="q1.2">2. Do you frequently experience eye strain or fatigue, especially after extended periods of reading or screen time?</string>
+    <string name="q1.3">3. Do you wear any prescription spectacles or contacts?</string>
+    <string name="q1.4">4. Are your eyes frequently itchy, irritated or red?</string>
+    <string name="q1.5">5. Have you noticed any sudden flashes of light or floating spots (floaters) in your field of vision?</string>
+
+    <!-- Ear Questions -->
+    <string name="q2.1">1. Do you experience frequent or recurring earaches or ear pain?</string>
+    <string name="q2.2">2. Do you often experience ringing in your ears (tinnitus)?</string>
+    <string name="q2.3">3. Have you undergone any ear surgeries or procedures in the past?</string>
+    <string name="q2.4">4. Are you exposed to loud noises on a regular basis, either at work or during recreational activities?</string>
+    <string name="q2.5">5. Have you noticed any discharge, odor, or itching in your ears?</string>
+
+    <!-- Throat Questions -->
+    <string name="q3.1">1. Have you experienced a persistent sore throat for more than two weeks?</string>
+    <string name="q3.2">2. Do you frequently have difficulty swallowing or feel a sensation of something stuck in your throat?</string>
+    <string name="q3.3">3. Have you noticed any unexplained changes in your voice, such as hoarseness or voice fatigue?</string>
+    <string name="q3.4">4. Have you noticed any unusual lumps, bumps, or swelling in your neck or throat area?</string>
+    <string name="q3.5">5. Do you experience recurrent or frequent throat infections?</string>
 </resources>
