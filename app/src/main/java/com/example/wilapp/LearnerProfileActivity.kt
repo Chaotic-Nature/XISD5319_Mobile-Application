@@ -43,6 +43,7 @@ class LearnerProfileActivity : AppCompatActivity() {
             }
         })
 
+
         binding.editScreeningBtn.setOnClickListener {
             intent = Intent(this, EditScreeningActivity::class.java)
             intent.putExtra("learner", learnerId)
