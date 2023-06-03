@@ -1,8 +1,9 @@
 package com.example.wilapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.content.ContextCompat
+import android.widget.Toast
 import com.example.wilapp.databinding.ActivityAddScreeningBinding
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -19,44 +20,50 @@ class AddScreeningActivity : AppCompatActivity() {
         val learner = intent.extras?.getString("learner").toString()
 
         binding.saveBtn.setOnClickListener {
+            val list = populateList(learner)
+            var successCount = 0
+            val totalQuestions = list.size
 
-            //
-            val q1 = Pair(getString(R.string.q1_1),binding.qtn11S.isChecked)
-            val q2 = Pair(getString(R.string.q1_2),binding.qtn12S.isChecked)
-            val q3 = Pair(getString(R.string.q1_3),binding.qtn13S.isChecked)
-            val q4 = Pair(getString(R.string.q1_4),binding.qtn14S.isChecked)
-            val q5 = Pair(getString(R.string.q1_5),binding.qtn15S.isChecked)
-
-            //
-            val q6 = Pair(getString(R.string.q2_1),binding.qtn21S.isChecked)
-            val q7 = Pair(getString(R.string.q2_2),binding.qtn22S.isChecked)
-            val q8 = Pair(getString(R.string.q2_3),binding.qtn23S.isChecked)
-            val q9 = Pair(getString(R.string.q2_4),binding.qtn24S.isChecked)
-            val q10 = Pair(getString(R.string.q2_5),binding.qtn25S.isChecked)
-
-            //
-            val q11 = Pair(getString(R.string.q3_1),binding.qtn31S.isChecked)
-            val q12 = Pair(getString(R.string.q3_2),binding.qtn32S.isChecked)
-            val q13 = Pair(getString(R.string.q3_3),binding.qtn13S.isChecked)
-            val q14 = Pair(getString(R.string.q3_4),binding.qtn34S.isChecked)
-            val q15 = Pair(getString(R.string.q3_5),binding.qtn35S.isChecked)
-
-            saveAnswersToFirebase(learner, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15)
+            for (question in list) {
+                wellnessMobileClinicRef.child(learner)
+                    .push()
+                    .setValue(question)
+                    .addOnSuccessListener {
+                        successCount++
+                        if (successCount == totalQuestions) {
+                            Toast.makeText(this, "Successfully added learner screening", Toast.LENGTH_LONG).show()
+                            intent = Intent(this@AddScreeningActivity, LearnerProfileActivity::class.java)
+                            intent.putExtra("learner", learner)
+                            startActivity(intent)
+                            finish()
+                        }
+                    }
+                    .addOnFailureListener {
+                        Toast.makeText(this, "Something went wrong.", Toast.LENGTH_LONG).show()
+                    }
+            }
         }
+
     }
-
-    private fun saveAnswersToFirebase(userId: String, vararg answers: Pair<String, Boolean>) {
-        for ((index, pair) in answers.withIndex()) {
-            val questionText = pair.first
-            val questionId = "question${index + 1}"
-            val answer = pair.second
-
-            val questionRef = wellnessMobileClinicRef.child("screeningQuestions").child(userId).child(questionId)
-            questionRef.child("question").setValue(questionText)
-            questionRef.child("answer").setValue(answer)
-        }
+    private fun populateList(learner: String): List<ScreeningQuestionsModel> {
+        return mutableListOf(
+            ScreeningQuestionsModel(learner, getString(R.string.q1_1), binding.qtn11S.isChecked),
+            ScreeningQuestionsModel(learner, getString(R.string.q1_2), binding.qtn12S.isChecked),
+            ScreeningQuestionsModel(learner, getString(R.string.q1_3), binding.qtn13S.isChecked),
+            ScreeningQuestionsModel(learner, getString(R.string.q1_4), binding.qtn14S.isChecked),
+            ScreeningQuestionsModel(learner, getString(R.string.q1_5), binding.qtn15S.isChecked),
+            ScreeningQuestionsModel(learner, getString(R.string.q2_1), binding.qtn21S.isChecked),
+            ScreeningQuestionsModel(learner, getString(R.string.q2_2), binding.qtn22S.isChecked),
+            ScreeningQuestionsModel(learner, getString(R.string.q2_3), binding.qtn23S.isChecked),
+            ScreeningQuestionsModel(learner, getString(R.string.q2_4), binding.qtn24S.isChecked),
+            ScreeningQuestionsModel(learner, getString(R.string.q2_5), binding.qtn25S.isChecked),
+            ScreeningQuestionsModel(learner, getString(R.string.q3_1), binding.qtn31S.isChecked),
+            ScreeningQuestionsModel(learner, getString(R.string.q3_2), binding.qtn32S.isChecked),
+            ScreeningQuestionsModel(learner, getString(R.string.q3_3), binding.qtn33S.isChecked),
+            ScreeningQuestionsModel(learner, getString(R.string.q3_4), binding.qtn34S.isChecked),
+            ScreeningQuestionsModel(learner, getString(R.string.q3_5), binding.qtn35S.isChecked),
+        )
     }
-
 }
 
 
