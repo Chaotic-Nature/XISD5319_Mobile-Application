@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/greenn"
     tools:context=".SignUp">
 
     <ImageView
@@ -13,7 +14,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/greenn" />
+        app:srcCompat="@drawable/greenn"
+        android:importantForAccessibility="no" />
 
     <TextView
         android:id="@+id/loginTv"
@@ -45,14 +47,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Email"
-            android:textColor="#000000"
-            android:textSize="20dp"
+            android:textColor="@color/green"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <EditText
             android:id="@+id/emailTb"
-            android:layout_width="match_parent"
+            android:layout_width="320dp"
             android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="24dp"
             android:background="@drawable/edit_text_back"
@@ -61,62 +64,70 @@
             android:inputType="textEmailAddress"
             android:padding="8dp"
             android:textColor="#347C17"
-            android:textSize="20dp" />
+            android:textSize="20sp"
+            android:autofillHints="" />
 
         <TextView
             android:id="@+id/textView6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Password"
-            android:textColor="#000000"
-            android:textSize="20dp"
+            android:textColor="@color/green"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <EditText
             android:id="@+id/passwordTb"
-            android:layout_width="match_parent"
+            android:layout_width="320dp"
             android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="24dp"
             android:background="@drawable/edit_text_back"
-            android:ems="10"
 
+            android:ems="10"
             android:inputType="textPassword"
             android:padding="8dp"
             android:textColor="#347C17"
             android:textColorHint="#131313"
-            android:textSize="20dp" />
+            android:textSize="20sp"
+            android:importantForAutofill="no" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <Button
             android:id="@+id/signUpBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="320dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
-            android:background="@drawable/button_background"
-            android:text="SignUp"
+            android:backgroundTint="@color/green"
+            android:text="Sign Up"
             android:textColor="#ffffff"
-            android:textSize="20dp" />
+            android:textSize="16sp"
+            app:cornerRadius="50dp" />
 
         <TextView
             android:id="@+id/textView16"
-            android:layout_width="match_parent"
+            android:layout_width="320dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
             android:text="Already Have An Account?"
             android:textColor="#000000"
-            android:textSize="18dp"
 
-            />
+            android:textSize="16sp" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <Button
             android:id="@+id/loginBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="320dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
-            android:background="@drawable/button_background"
+            android:backgroundTint="@color/green"
             android:text="Go To Login"
+            android:textAllCaps="true"
             android:textColor="#ffffff"
-            android:textSize="20dp" />
+            android:textSize="16sp"
+            app:cornerRadius="50dp" />
 
     </LinearLayout>
 

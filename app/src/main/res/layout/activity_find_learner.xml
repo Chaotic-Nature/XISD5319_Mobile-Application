@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
     android:background="@color/white"
     android:orientation="vertical"
     tools:context=".FindLearnerActivity"
@@ -42,14 +41,17 @@
         android:id="@+id/idNumber"
         style="@style/InputBoxes"
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp">
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal|center_vertical">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:gravity="center_horizontal|center_vertical"
             android:inputType="number"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:textAlignment="center"
             android:textColor="@color/black" />
 
@@ -59,11 +61,12 @@
     <Button
         android:id="@+id/searchBtn"
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/green"
         android:backgroundTintMode="src_over"
+        android:elevation="6dp"
         android:text="Search"
         android:textColor="@color/white"
         android:textStyle="bold" />

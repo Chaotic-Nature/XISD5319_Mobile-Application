@@ -156,7 +156,7 @@
                 android:layout_alignParentEnd="true"
                 android:background="@null"
                 android:backgroundTint="#C6FFBA"
-                android:text="Edit"
+                android:text="Delete"
                 android:textColor="@color/green"
                 android:textStyle="bold" />
         </RelativeLayout>

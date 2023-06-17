@@ -1,9 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EditProcedureActivity">
+    android:orientation="vertical"
+    tools:context=".EditProcedureActivity"
+    android:padding="20dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/deleteProcedureHeading_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Delete Procedure"
+        android:textColor="@color/green"
+        android:textSize="20sp" />
+
+    <View
+        android:id="@+id/divider7"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/green" />
+
+    <Spinner
+        android:id="@+id/dataSpinner"
+        style="@style/Widget.AppCompat.Spinner.DropDown"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="100dp"
+        android:backgroundTint="@color/green"
+        android:backgroundTintMode="add"
+        android:dropDownSelector="@color/green"
+        android:minHeight="48dp" />
+
+    <Button
+        android:id="@+id/deleteBtn"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="@color/green"
+        android:text="Delete"
+        android:textColor="@color/white" />
+</LinearLayout>

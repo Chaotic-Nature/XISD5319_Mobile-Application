@@ -1,55 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:padding="20dp"
-    tools:context=".HomeActivity"
-    android:background="@color/white">
+    android:background="@drawable/greenn"
 
-    <ImageView
-        android:id="@+id/logoImage"
+    tools:context=".HomeActivity">
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:src="@drawable/logo" />
+        android:background="@drawable/home_background"
+        android:elevation="6dp"
+        android:orientation="vertical"
+        android:padding="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/findLearnerButton"
-        style="@style/Widget.Material3.Button.ElevatedButton.Icon"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:backgroundTint="@color/green"
-        android:backgroundTintMode="src_over"
-        android:text="Find Learner"
-        android:textColor="@color/white"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:cornerRadius="10dp"
-        app:icon="@drawable/find_learner_icon"
-        app:iconSize="25dp"
-        app:iconTint="@color/white" />
+        <ImageView
+            android:id="@+id/logoImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:importantForAccessibility="no"
+            android:src="@drawable/logo" />
 
-    <Button
-        android:id="@+id/addLearnerButton"
-        style="@style/Widget.Material3.Button.ElevatedButton.Icon"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@color/green"
-        android:backgroundTintMode="src_over"
-        android:text="Add Learner"
-        android:textColor="@color/white"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:cornerRadius="10dp"
-        app:icon="@drawable/add_learner_icon"
-        app:iconSize="25dp"
-        app:iconTint="@color/white" />
+        <Button
+            android:id="@+id/findLearnerButton"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp"
+            android:backgroundTint="@color/green"
+            android:text="@string/find_learner"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:cornerRadius="10dp"
+            app:icon="@drawable/find_learner_icon"
+            app:iconGravity="textStart"
+            app:iconSize="25dp"
+            app:iconTint="@color/white" />
+
+        <Button
+            android:id="@+id/addLearnerButton"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/green"
+            android:text="@string/add_learner"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:cornerRadius="10dp"
+            app:icon="@drawable/add_learner_icon"
+            app:iconGravity="textStart"
+            app:iconSize="25dp"
+            app:iconTint="@color/white" />
+    </LinearLayout>
 
 
-</LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

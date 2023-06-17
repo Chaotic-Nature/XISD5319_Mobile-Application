@@ -1,8 +1,12 @@
 <resources>
     <!-- Screening Questions -->
-    <array name="questions">
+    <string-array name="procedureCategories">
+        <item>Eye Test</item>
+        <item>Teeth Cleaning</item>
+        <item>Throat Inspection</item>
+        <item>Mobility test</item>
+    </string-array>
 
-    </array>
     <!-- Eye Questions -->
     <string name="q1.1">1.1. Do you experience blurry vision or have difficulty focusing on objects?</string>
     <string name="q1.2">1.2. Do you frequently experience eye strain or fatigue, especially after extended periods of reading or screen time?</string>
@@ -23,4 +27,12 @@
     <string name="q3.3">3.3. Have you noticed any unexplained changes in your voice, such as hoarseness or voice fatigue?</string>
     <string name="q3.4">3.4. Have you noticed any unusual lumps, bumps, or swelling in your neck or throat area?</string>
     <string name="q3.5">3.5. Do you experience recurrent or frequent throat infections?</string>
+    <string name="find_learner">Find Learner</string>
+    <string name="add_learner">Add Learner</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="email_example">kacey@gmail.com</string>
+    <string name="password">Password</string>
+    <string name="don_t_have_an_account">Don\'t Have An Account?</string>
+    <string name="create_an_account">Create an Account</string>
 </resources>
