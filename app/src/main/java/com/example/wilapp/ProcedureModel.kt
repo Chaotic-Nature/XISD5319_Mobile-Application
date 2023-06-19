@@ -1,12 +1,14 @@
 package com.example.wilapp
 
 class ProcedureModel() {
-    lateinit var category : String
-    lateinit var description : String
-    lateinit var procedurePerformer : String
-    lateinit var datePerformed : String
+     var id : String = ""
+     var category : String = ""
+     var description : String = ""
+     var procedurePerformer : String = ""
+     var datePerformed : String = ""
 
-    constructor(category : String, description: String, procedurePerformer : String, datePerformed : String) : this(){
+    constructor(id : String, category : String, description: String, procedurePerformer : String, datePerformed : String) : this(){
+        this.id = id
         this.category = category
         this.description = description
         this.procedurePerformer = procedurePerformer

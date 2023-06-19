@@ -16,10 +16,10 @@
         <item name="android:layout_marginTop">4dp</item>
 
     </style>
-    <style name="ThemeOverlay.App.DatePicker" parent="@style/ThemeOverlay.Material3.MaterialCalendar">
+    <style name="GreenDatePickerDialog" parent="ThemeOverlay.MaterialComponents.Dialog">
         <item name="colorPrimary">@color/green</item>
-        <item name="colorOnPrimary">#A5D6A7</item>
+        <item name="colorPrimaryVariant">#1B5E20</item>
+        <item name="colorOnPrimary">@color/white</item>
     </style>
-
 
 </resources>

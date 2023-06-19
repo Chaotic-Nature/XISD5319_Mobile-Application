@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/greenn"
+    android:backgroundTint="@color/grey_background_tint"
+    android:backgroundTintMode="src_over"
     android:orientation="vertical"
     android:padding="20dp"
     tools:context=".AddProcedureActivity">
@@ -14,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Add Procedure"
-        android:textColor="@color/green"
+        android:textColor="@color/white"
         android:textSize="20sp" />
 
     <View
@@ -22,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="5dp"
-        android:background="@color/green" />
+        android:background="@color/white" />
 
     <TextView
         android:id="@+id/spinnerLabel_tv"
@@ -31,18 +33,15 @@
         android:layout_marginTop="5dp"
         android:labelFor="@id/procedureCategory_spinner"
         android:text="Select a procedure category below"
-        android:textColor="@color/black" />
+        android:textColor="@color/white" />
 
     <Spinner
         android:id="@+id/procedureCategory_spinner"
-        style="@style/Widget.AppCompat.Spinner.DropDown"
+        style="@android:style/Widget.Spinner"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="5dp"
-        android:backgroundTint="@color/green"
-        android:backgroundTintMode="add"
-        android:dropDownSelector="@color/green"
         android:minHeight="48dp" />
 
     <TextView
@@ -51,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="Description"
-        android:textColor="@color/black" />
+        android:textColor="@color/white" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/procedureDescription_tb"
@@ -59,20 +58,20 @@
         android:layout_height="150dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="5dp"
-        app:boxBackgroundColor="@null"
+        app:boxBackgroundColor="@color/white"
         app:boxBackgroundMode="outline"
         app:boxStrokeColor="@color/green">
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="top"
+            android:gravity="start|top"
             android:inputType="textMultiLine"
             android:paddingStart="5dp"
             android:paddingTop="5dp"
             android:paddingEnd="5dp"
             android:paddingBottom="5dp"
-            android:textColor="@color/black" />
+            android:textColor="@color/green" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -82,30 +81,27 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="Person who performed procedure"
-        android:textColor="@color/black" />
+        android:textColor="@color/white" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/procedurePerformer_tb"
+        style="@style/InputBoxes"
         android:layout_width="300dp"
-        android:layout_height="48dp"
+        android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="5dp"
-        app:boxBackgroundColor="@null"
-        app:boxBackgroundMode="outline"
-        app:boxCornerRadiusBottomEnd="5dp"
-        app:boxCornerRadiusBottomStart="5dp"
-        app:boxCornerRadiusTopEnd="5dp"
-        app:boxCornerRadiusTopStart="5dp"
-        app:boxStrokeColor="@color/green">
+        app:boxBackgroundColor="@color/white"
+        app:boxBackgroundMode="outline">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="start|top"
-            android:padding="5dp"
-            android:textAlignment="viewStart"
-            android:textColor="@color/black" />
-
+            android:layout_gravity="start|center_vertical"
+            android:gravity="start|center_vertical"
+            android:inputType="textAutoComplete"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:textColor="@color/green" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -119,8 +115,19 @@
         android:backgroundTint="@color/green"
         android:text="Date performed"
         android:textColor="@color/white"
-        android:textSize="14sp"
-        app:cornerRadius="10dp" />
+        android:textSize="16sp"
+        app:cornerRadius="10dp"
+        app:strokeColor="@color/white"
+        app:strokeWidth="0.5dp" />
+
+    <TextView
+        android:id="@+id/dateDisplay_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="03/01/2001"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/save_btn"
@@ -131,7 +138,25 @@
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/green"
         android:backgroundTintMode="src_over"
+        android:elevation="6dp"
         android:text="Save"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:cornerRadius="10dp"
+        app:strokeColor="@color/white"
+        app:strokeWidth="0.5dp" />
+
+    <Button
+        android:id="@+id/cancel_btn"
+        style="@style/Widget.Material3.Button"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#FA3122"
+        android:backgroundTintMode="src_over"
+        android:elevation="6dp"
+        android:text="Cancel"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:cornerRadius="10dp" />

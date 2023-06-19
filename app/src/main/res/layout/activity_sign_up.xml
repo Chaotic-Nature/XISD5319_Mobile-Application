@@ -23,9 +23,8 @@
         android:layout_height="wrap_content"
         android:text="Sign Up"
         android:textColor="#ffffff"
-        android:textSize="30sp"
+        android:textSize="48sp"
         android:textStyle="bold"
-
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="@+id/imageView3"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
@@ -33,14 +32,16 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="600dp"
+        android:layout_width="0dp"
+        android:layout_height="550dp"
         android:background="@drawable/background_bottom"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
         android:padding="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageView3">
 
         <TextView
             android:id="@+id/passwordTv"
@@ -51,21 +52,28 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/emailTb"
             android:layout_width="320dp"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="24dp"
-            android:background="@drawable/edit_text_back"
-            android:ems="10"
-            android:hint="kacey@gmail.com"
-            android:inputType="textEmailAddress"
-            android:padding="8dp"
-            android:textColor="#347C17"
-            android:textSize="20sp"
-            android:autofillHints="" />
+            android:textColorHint="@color/green"
+            app:boxBackgroundColor="@color/white"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/green"
+            app:hintTextColor="@color/green">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/email_example"
+                android:inputType="textEmailAddress"
+                android:padding="5dp"
+                android:textColor="@color/green"
+                android:textSize="20sp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/textView6"
@@ -76,55 +84,51 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/passwordTb"
             android:layout_width="320dp"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="24dp"
-            android:background="@drawable/edit_text_back"
+            android:layout_marginBottom="5dp"
+            app:boxBackgroundColor="@color/white"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/green"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/green"
+            app:passwordToggleTintMode="src_in">
 
-            android:ems="10"
-            android:inputType="textPassword"
-            android:padding="8dp"
-            android:textColor="#347C17"
-            android:textColorHint="#131313"
-            android:textSize="20sp"
-            android:importantForAutofill="no" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textPassword"
+                android:padding="5dp"
+                android:textColor="@color/green"
+                android:textSize="20sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/loginBtn"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:padding="0dp"
+            android:text="Already have an account?"
+            android:textAlignment="viewStart"
+            android:textColor="@color/green"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/signUpBtn"
             android:layout_width="320dp"
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:backgroundTint="@color/green"
             android:text="Sign Up"
-            android:textColor="#ffffff"
-            android:textSize="16sp"
-            app:cornerRadius="50dp" />
-
-        <TextView
-            android:id="@+id/textView16"
-            android:layout_width="320dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:text="Already Have An Account?"
-            android:textColor="#000000"
-
-            android:textSize="16sp" />
-
-        <Button
-            android:id="@+id/loginBtn"
-            android:layout_width="320dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"
-            android:backgroundTint="@color/green"
-            android:text="Go To Login"
-            android:textAllCaps="true"
             android:textColor="#ffffff"
             android:textSize="16sp"
             app:cornerRadius="50dp" />

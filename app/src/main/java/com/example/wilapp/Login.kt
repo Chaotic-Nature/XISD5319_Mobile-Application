@@ -6,11 +6,15 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.wilapp.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthInvalidUserException
+import com.google.firebase.auth.FirebaseAuthRecentLoginRequiredException
 
 class Login : AppCompatActivity() {
 
-    private lateinit var binding : ActivityLoginBinding
+    private lateinit var binding: ActivityLoginBinding
     private lateinit var firebaseAuth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -23,26 +27,42 @@ class Login : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.loginBtn.setOnClickListener {
+            signInUser()
+        }
+    }
 
-        binding.loginBtn.setOnClickListener{
-            val email = binding.emailTb.text.toString().trim()
-            val password = binding.passwordTb.text.toString().trim()
+    private fun signInUser() {
+        val email = binding.emailTb.editText?.text.toString().trim()
+        val password = binding.passwordTb.editText?.text.toString().trim()
 
-            if (email.isNotEmpty() && password.isNotEmpty()) {
+        binding.emailTb.error = null
+        binding.passwordTb.error = null
 
-                firebaseAuth.signInWithEmailAndPassword(email ,password).addOnCompleteListener{
-                    if(it.isSuccessful){
-                        intent = Intent(this, HomeActivity::class.java)
+        if (email.isEmpty()) {
+            binding.emailTb.error = "Email cannot be empty"
+        } else if (password.isEmpty()) {
+            binding.passwordTb.error = "Password cannot be empty"
+        } else {
+            firebaseAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val intent = Intent(this, HomeActivity::class.java)
                         startActivity(intent)
-                    }
-                    else {
-                        Toast.makeText(this,it.exception.toString(), Toast.LENGTH_SHORT).show()
+                    } else {
+                        handleSignInError(task.exception)
                     }
                 }
-            }
-            else {
-                Toast.makeText(this,"You have left fields empty", Toast.LENGTH_SHORT).show()
-            }
         }
+    }
+
+    private fun handleSignInError(exception: Exception?) {
+        val errorMessage = when (exception) {
+            is FirebaseAuthInvalidUserException -> "Invalid user"
+            is FirebaseAuthInvalidCredentialsException -> "Invalid email or password"
+            is FirebaseAuthRecentLoginRequiredException -> "Recent login required"
+            else -> exception?.message
+        }
+        Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()
     }
 }

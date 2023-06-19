@@ -29,6 +29,12 @@ class EditScreeningActivity : AppCompatActivity() {
                     Toast.makeText(this@EditScreeningActivity, "Error deleting existing data.", Toast.LENGTH_LONG).show()
                 }
         }
+        binding.cancelBtn.setOnClickListener {
+            intent = Intent(this, LearnerProfileActivity::class.java)
+            intent.putExtra("learner", learnerId)
+            startActivity(intent)
+            finish()
+        }
     }
 
     private fun saveDataToFirebase(learnerId: String) {

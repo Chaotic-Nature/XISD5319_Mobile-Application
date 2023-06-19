@@ -4,48 +4,109 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/greenn"
+    android:gravity="center_vertical"
     android:orientation="vertical"
     android:padding="20dp"
     tools:context=".AddLearnerActivity">
 
-    <ImageView
-        android:id="@+id/logoImage"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="50dp"
-        android:src="@drawable/logo" />
+        android:background="@drawable/home_background"
+        android:elevation="6dp"
+        android:orientation="vertical"
+        android:padding="10dp">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/nameTextField"
-            style="@style/InputBoxes"
-            android:layout_width="150dp"
+        <ImageView
+            android:id="@+id/logoImage"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:hint="Name">
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/logo" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/nameTextField"
+                style="@style/InputBoxes"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black" />
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:hint="Name">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/surnameTextField"
+                style="@style/InputBoxes"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:hint="Surname">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ageTextField"
+                style="@style/InputBoxes"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:hint="Age">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/sexTextField"
+                style="@style/InputBoxes"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:hint="Sex">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </RelativeLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/surnameTextField"
+            android:id="@+id/schoolTextField"
             style="@style/InputBoxes"
-            android:layout_width="150dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:hint="Surname">
+            android:layout_marginTop="5dp"
+            android:hint="School">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -53,82 +114,31 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-    </RelativeLayout>
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/ageTextField"
+            android:id="@+id/idTextField"
             style="@style/InputBoxes"
-            android:layout_width="150dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:hint="Age">
+            android:layout_marginTop="5dp"
+            android:hint="ID">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/sexTextField"
-            style="@style/InputBoxes"
-            android:layout_width="150dp"
+        <Button
+            android:id="@+id/saveBtn"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:hint="Sex">
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:backgroundTint="@color/green"
+            android:text="Save"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+    </LinearLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-    </RelativeLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/idTextField"
-        style="@style/InputBoxes"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:hint="ID">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/schoolTextField"
-        style="@style/InputBoxes"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:hint="School">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <Button
-        android:id="@+id/saveBtn"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@color/green"
-        android:text="Save"
-        android:textColor="@color/white"
-        android:textStyle="bold" />
 
 </LinearLayout>

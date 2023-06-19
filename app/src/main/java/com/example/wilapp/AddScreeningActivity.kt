@@ -44,6 +44,13 @@ class AddScreeningActivity : AppCompatActivity() {
             }
         }
 
+        binding.cancelBtn.setOnClickListener {
+            intent = Intent(this, LearnerProfileActivity::class.java)
+            intent.putExtra("learner", learner)
+            startActivity(intent)
+            finish()
+        }
+
     }
     private fun populateList(learner: String): List<ScreeningQuestionsModel> {
         return mutableListOf(

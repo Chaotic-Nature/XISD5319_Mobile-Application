@@ -5,8 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
+    app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="10dp"
-    app:cardElevation="6dp"
+    app:cardElevation="5dp"
     app:contentPadding="10dp">
 
     <LinearLayout
@@ -20,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Name: Cibrian Hofsta"
-            android:textColor="@color/black" />
+            android:textColor="@color/green" />
 
         <TextView
             android:id="@+id/ageText"
@@ -37,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="ID number: 0101035298088"
-            android:textColor="@color/black" />
+            android:textColor="@color/green" />
 
     </LinearLayout>
 

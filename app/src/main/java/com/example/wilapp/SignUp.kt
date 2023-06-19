@@ -6,6 +6,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.wilapp.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthEmailException
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 
 
 class SignUp : AppCompatActivity() {
@@ -24,25 +28,37 @@ class SignUp : AppCompatActivity() {
 
         }
         binding.signUpBtn.setOnClickListener{
-            val email = binding.emailTb.text.toString().trim()
-            val pass = binding.passwordTb.text.toString().trim()
+            val email = binding.emailTb.editText?.text.toString().trim()
+            val password = binding.passwordTb.editText?.text.toString().trim()
 
-            if ( email.isNotEmpty() && pass.isNotEmpty()) {
-                firebaseAuth.createUserWithEmailAndPassword( email , pass) .addOnCompleteListener{
+            binding.emailTb.error = null
+            binding.passwordTb.error = null
+
+            if(email.isEmpty()){
+                binding.emailTb.error = "Email cannot be empty"
+            }
+            else if(password.isEmpty()){
+                binding.passwordTb.error = "Password cannot be empty"
+            }
+            else{
+                firebaseAuth.createUserWithEmailAndPassword(email, password) .addOnCompleteListener{
                     if(it.isSuccessful){
-
                         intent = Intent(this , Login::class.java)
                         startActivity(intent)
 
                     } else {
-                        Toast.makeText(this,it.exception.toString(), Toast.LENGTH_SHORT).show()
+                        handleSignUpError(it.exception)
                     }
                 }
-
-            }
-            else {
-                Toast.makeText(this,"You have left fields empty", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+    private fun handleSignUpError(exception: Exception?) {
+        val errorMessage = when (exception) {
+            is FirebaseAuthWeakPasswordException -> "Password must be 6 or more characters"
+            is FirebaseAuthUserCollisionException -> "Email already exists"
+            else -> exception?.message
+        }
+        Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()
     }
 }

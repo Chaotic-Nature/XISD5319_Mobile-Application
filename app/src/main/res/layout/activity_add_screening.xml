@@ -212,6 +212,16 @@
             android:backgroundTintMode="src_over"
             android:text="Save"
             app:cornerRadius="10dp" />
+        <Button
+            android:id="@+id/cancel_btn"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#B71C1C"
+            android:backgroundTintMode="src_over"
+            android:text="Cancel"
+            app:cornerRadius="10dp" />
 
 
     </LinearLayout>

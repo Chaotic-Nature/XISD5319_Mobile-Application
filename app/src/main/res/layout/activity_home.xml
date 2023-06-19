@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     android:background="@drawable/greenn"
 
+    android:backgroundTint="#54000000"
+    android:backgroundTintMode="src_over"
     tools:context=".HomeActivity">
 
     <LinearLayout
@@ -33,7 +35,7 @@
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             android:backgroundTint="@color/green"
             android:text="@string/find_learner"
             android:textAllCaps="false"
@@ -64,7 +66,6 @@
             app:iconSize="25dp"
             app:iconTint="@color/white" />
     </LinearLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

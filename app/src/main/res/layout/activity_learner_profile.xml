@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@drawable/greenn"
+        android:backgroundTint="#54000000"
+        android:backgroundTintMode="src_over"
         android:orientation="vertical"
         android:padding="20dp"
         tools:context=".LearnerProfileActivity">
@@ -20,72 +20,92 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Learner Information"
-            android:textColor="@color/green"
+            android:textColor="@color/white"
             android:textSize="20sp" />
 
         <View
             android:id="@+id/divider1"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/green" />
+            android:background="@color/white" />
 
-        <TextView
-            android:id="@+id/nameTv"
-            style="@style/LearnerInformationText"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="Cibrian Hofsta" />
+            android:background="@drawable/home_background"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:layout_marginTop="5dp">
 
-        <TextView
-            android:id="@+id/ageTv"
-            style="@style/LearnerInformationText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="22" />
+            <TextView
+                android:id="@+id/nameTv"
+                style="@style/LearnerInformationText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cibrian Hofsta"
+                android:textColor="@color/black" />
 
-        <TextView
-            android:id="@+id/sexTv"
-            style="@style/LearnerInformationText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="M" />
+            <TextView
+                android:id="@+id/ageTv"
+                style="@style/LearnerInformationText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="22" />
 
-        <TextView
-            android:id="@+id/idTv"
-            style="@style/LearnerInformationText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="0101035298088" />
+            <TextView
+                android:id="@+id/sexTv"
+                style="@style/LearnerInformationText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="M" />
 
-        <TextView
-            android:id="@+id/schoolTv"
-            style="@style/LearnerInformationText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Malibu High School" />
+            <TextView
+                android:id="@+id/idTv"
+                style="@style/LearnerInformationText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="0101035298088" />
+
+            <TextView
+                android:id="@+id/schoolTv"
+                style="@style/LearnerInformationText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Malibu High School" />
+
+        </LinearLayout>
+
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="Screening"
-            android:textColor="@color/green"
+            android:textColor="@color/white"
             android:textSize="20sp" />
 
         <View
             android:id="@+id/divider2"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/green" />
+            android:background="@color/white" />
+
+        <TextView
+            android:id="@+id/noScreening_Tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="No screening information"
+            android:textColor="@color/white" />
 
         <TextView
             android:id="@+id/screeningResultsTv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="No screening information"
-            android:textColor="#474747" />
+            android:background="@drawable/home_background"
+            android:padding="5dp"
+            android:textColor="@color/green" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -96,10 +116,13 @@
                 android:id="@+id/addScreeningBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#C6FFBA"
+                android:backgroundTint="@color/green"
                 android:text="Add"
-                android:textColor="@color/green"
-                android:textStyle="bold" />
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:cornerRadius="10dp"
+                app:strokeColor="@color/white"
+                app:strokeWidth="0.5dp" />
 
             <Button
                 android:id="@+id/editScreeningBtn"
@@ -109,7 +132,8 @@
                 android:backgroundTint="#C6FFBA"
                 android:text="Edit"
                 android:textColor="@color/green"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:cornerRadius="10dp" />
         </RelativeLayout>
 
         <TextView
@@ -117,22 +141,28 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="Procedures"
-            android:textColor="@color/green"
+            android:textColor="@color/white"
             android:textSize="20sp" />
 
         <View
             android:id="@+id/divider3"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/green" />
+            android:background="@color/white" />
 
         <TextView
-            android:id="@+id/proceduresResultsTv"
+            android:id="@+id/noProcedureTv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="No screening information"
-            android:textColor="#474747" />
+            android:text="No procedure information"
+            android:textColor="@color/white" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/procedureRv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -147,18 +177,9 @@
                 android:backgroundTint="#C6FFBA"
                 android:text="Add"
                 android:textColor="@color/green"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:cornerRadius="10dp" />
 
-            <Button
-                android:id="@+id/editProcedureBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:background="@null"
-                android:backgroundTint="#C6FFBA"
-                android:text="Delete"
-                android:textColor="@color/green"
-                android:textStyle="bold" />
         </RelativeLayout>
 
         <View
@@ -166,7 +187,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="10dp"
-            android:background="@color/green" />
+            android:background="@color/white" />
 
         <Button
             android:id="@+id/returnBtn"
@@ -178,6 +199,8 @@
             android:backgroundTintMode="src_over"
             android:text="Return"
             android:textColor="@color/white"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:strokeColor="@color/white"
+            app:strokeWidth="0.5dp" />
     </LinearLayout>
 </ScrollView>

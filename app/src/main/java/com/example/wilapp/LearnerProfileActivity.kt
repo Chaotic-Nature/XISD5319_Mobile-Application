@@ -2,9 +2,11 @@ package com.example.wilapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wilapp.databinding.ActivityLearnerProfileBinding
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -20,17 +22,20 @@ class LearnerProfileActivity : AppCompatActivity() {
         binding = ActivityLearnerProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val learnerId = intent.extras?.getString("learner")
+        val learnerId = intent.getStringExtra("learner") ?: ""
         val learnersRef = database.reference.child("learners")
         val questionAnswersRef = database.reference.child("screeningQuestions/$learnerId")
         val proceduresRef = database.reference.child("procedures/$learnerId")
+
+        binding.noScreeningTv.visibility = View.VISIBLE
+        binding.screeningResultsTv.visibility = View.GONE
 
         learnersRef.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
 
                 for (pulledLearner in snapshot.children){
                     val learner : LearnerModel? = pulledLearner.getValue(LearnerModel::class.java)
-                    if(learner != null && learner.id == learnerId){
+                    if(learner != null && pulledLearner.key== learnerId){
                         binding.nameTv.text = learner.name + " " + learner.surname
                         binding.ageTv.text = learner.age.toString()
                         binding.sexTv.text = learner.sex
@@ -53,20 +58,17 @@ class LearnerProfileActivity : AppCompatActivity() {
                 for (pulledQuestion in dataSnapshot.children) {
                     val q : ScreeningQuestionsModel? = pulledQuestion.getValue(ScreeningQuestionsModel::class.java)
 
-                    if(q != null && learnerId != null){
+                    if(q != null){
                         displayText += "Q: ${q.question}\nA: ${q.answer}\n\n"
                         binding.addScreeningBtn.isEnabled = false
+                        binding.noScreeningTv.visibility = View.GONE
                         binding.addScreeningBtn.setBackgroundColor(ContextCompat.getColor(this@LearnerProfileActivity, R.color.grey))
 
-
-                    }
-                    else{
-                        displayText = "No screening record available."
-                        binding.addScreeningBtn.isEnabled = true
                     }
                 }
-
+                binding.screeningResultsTv.visibility = View.VISIBLE
                 binding.screeningResultsTv.text = displayText
+
             }
             override fun onCancelled(error: DatabaseError) {
                 Toast.makeText(this@LearnerProfileActivity,
@@ -76,19 +78,38 @@ class LearnerProfileActivity : AppCompatActivity() {
 
         proceduresRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                var displayText = ""
+                val displayText = "No procedure record available."
+                val procedureList = mutableListOf<ProcedureModel>()
                 for (pulledQuestion in dataSnapshot.children) {
                     val procedure : ProcedureModel? = pulledQuestion.getValue(ProcedureModel::class.java)
 
-                    if(procedure != null && learnerId != null){
-                        displayText +=
-                            "Category: ${procedure.category}\n${procedure.description}\nPerformed by: ${procedure.procedurePerformer}\nDate: ${procedure.datePerformed}\n___________________\n\n"
+                    if(procedure != null){
+                        val procedureKey = pulledQuestion.key
+                        if (procedureKey != null) {
+                            procedure.id = procedureKey
+                            procedureList.add(procedure)
+                        }
+
+                        binding.noProcedureTv.visibility = View.GONE
                     }
                     else{
-                        displayText = "No procedure record available."
+                        binding.noProcedureTv.text = displayText
                     }
                 }
-                binding.proceduresResultsTv.text = displayText
+
+                val adapter = ProcedureAdapter(procedureList)
+                binding.procedureRv.layoutManager = LinearLayoutManager(this@LearnerProfileActivity)
+                binding.procedureRv.adapter = adapter
+
+                adapter.setOnClickListener(object : ProcedureAdapter.OnClickListener {
+                    override fun onClick(position: Int, procedure: ProcedureModel) {
+                        intent = Intent(this@LearnerProfileActivity,
+                            EditProcedureActivity::class.java)
+                        intent.putExtra("procedureId", procedure.id)
+                        intent.putExtra("learnerId", learnerId)
+                        startActivity(intent)
+                    }
+                })
             }
             override fun onCancelled(error: DatabaseError) {
                 Toast.makeText(this@LearnerProfileActivity,
@@ -105,13 +126,6 @@ class LearnerProfileActivity : AppCompatActivity() {
 
         binding.addScreeningBtn.setOnClickListener {
             intent = Intent(this, AddScreeningActivity::class.java)
-            intent.putExtra("learner", learnerId)
-            startActivity(intent)
-            finish()
-        }
-
-        binding.editProcedureBtn.setOnClickListener {
-            intent = Intent(this, EditProcedureActivity::class.java)
             intent.putExtra("learner", learnerId)
             startActivity(intent)
             finish()

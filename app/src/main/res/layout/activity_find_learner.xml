@@ -4,127 +4,91 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/greenn"
+    android:backgroundTint="#54000000"
+    android:backgroundTintMode="src_over"
+    android:gravity="center_vertical"
     android:orientation="vertical"
-    tools:context=".FindLearnerActivity"
-    android:padding="20dp">
+    android:padding="20dp"
+    tools:context=".FindLearnerActivity">
 
-    <ImageView
-        android:id="@+id/logoImage"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:elevation="2dp"
-        app:srcCompat="@drawable/logo" />
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/pageHeading"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:text="Find Learner"
-        android:textColor="@color/green"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/instructionLabel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:text="Enter learner ID number below"
-        android:textColor="#474747"
-        android:textSize="16sp" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/idNumber"
-        style="@style/InputBoxes"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center_horizontal|center_vertical">
-
-        <com.google.android.material.textfield.TextInputEditText
+        <TextView
+            android:id="@+id/pageHeading"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="Find Learner"
+            android:textColor="@color/white"
+            android:textSize="34sp" />
+
+        <TextView
+            android:id="@+id/instructionLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="5dp"
+            android:gravity="center"
+            android:text="Enter learner ID number below"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/idNumber"
+            style="@style/InputBoxes"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
             android:layout_gravity="center_horizontal|center_vertical"
-            android:gravity="center_horizontal|center_vertical"
-            android:inputType="number"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:textAlignment="center"
-            android:textColor="@color/black" />
+            app:endIconTint="@color/green"
+            app:startIconTint="@color/green">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:gravity="center_horizontal|center_vertical"
+                android:inputType="number"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:textAlignment="center"
+                android:textColor="@color/green" />
 
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/searchBtn"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@color/green"
-        android:backgroundTintMode="src_over"
-        android:elevation="6dp"
-        android:text="Search"
-        android:textColor="@color/white"
-        android:textStyle="bold" />
+        <Button
+            android:id="@+id/searchBtn"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/green"
+            android:backgroundTintMode="src_over"
+            android:elevation="6dp"
+            android:text="Search"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:cornerRadius="10dp"
+            app:strokeColor="@color/white"
+            app:strokeWidth="0.5dp" />
 
-    <TextView
-        android:id="@+id/resultsLabel_tv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Results:"
-        android:textColor="#474747" />
+        <TextView
+            android:id="@+id/resultsLabel_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Results:"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/learnerInfoRv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
-   <!-- <androidx.cardview.widget.CardView
-        android:id="@+id/learnerInformationCv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:cardBackgroundColor="#86EAEAEA"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="5dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/nameText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Name: Cibrian Hofsta"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/ageText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_marginTop="5dp"
-                android:text="Age: 22"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/idText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="ID number: 0101035298088"
-                android:textColor="@color/black" />
-
-        </LinearLayout>
-
-
-    </androidx.cardview.widget.CardView>-->
 </LinearLayout>

@@ -3,10 +3,12 @@ package com.example.wilapp
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.wilapp.databinding.ActivityAddProcedureBinding
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import java.util.*
@@ -23,12 +25,14 @@ class AddProcedureActivity : AppCompatActivity() {
 
         val procedureReference = database.getReference("procedures")
         val learner = intent.extras?.getString("learner").toString()
+        binding.dateDisplayTv.visibility = View.GONE
 
         binding.procedureCategorySpinner.adapter = populateSpinner()
 
         binding.procedureDateBtn.setOnClickListener {
             showDatePicker()
         }
+
 
         binding.saveBtn.setOnClickListener {
             val category = binding.procedureCategorySpinner.selectedItem.toString()
@@ -37,24 +41,25 @@ class AddProcedureActivity : AppCompatActivity() {
             val procedurePerformer = binding.procedurePerformerTb.editText?.text.toString().trim()
 
             if (category.isNotEmpty() && description.isNotEmpty() && date.isNotEmpty() && procedurePerformer.isNotEmpty()) {
-                procedureReference.child(learner)
+                val procedureId = procedureReference.child(learner)
                     .push()
-                    .setValue(ProcedureModel(category, description, procedurePerformer,date))
-                    .addOnSuccessListener {
-                        Toast.makeText(
-                            this,
-                            "Successfully added procedure",
-                            Toast.LENGTH_LONG
-                        ).show()
-                        val intent =
-                            Intent(this@AddProcedureActivity, LearnerProfileActivity::class.java)
-                        intent.putExtra("learner", learner)
-                        startActivity(intent)
-                        finish()
-                    }
-                    .addOnFailureListener {
-                        Toast.makeText(this, "Something went wrong.", Toast.LENGTH_LONG).show()
-                    }
+                    .key
+                if (procedureId != null) {
+                    procedureReference.child(learner)
+                        .child(procedureId)
+                        .setValue(ProcedureModel(procedureId, category, description, procedurePerformer,date))
+                        .addOnSuccessListener {
+                            Toast.makeText(this, "Successfully added procedure",
+                                Toast.LENGTH_LONG).show()
+                            intent =Intent(this@AddProcedureActivity, LearnerProfileActivity::class.java)
+                            intent.putExtra("learner", learner)
+                            startActivity(intent)
+                            finish()
+                        }
+                        .addOnFailureListener {
+                            Toast.makeText(this, "Something went wrong.", Toast.LENGTH_LONG).show()
+                        }
+                }
             } else {
                 Toast.makeText(
                     this,
@@ -62,6 +67,10 @@ class AddProcedureActivity : AppCompatActivity() {
                     Toast.LENGTH_LONG
                 ).show()
             }
+        }
+
+        binding.cancelBtn.setOnClickListener {
+            finish()
         }
     }
 
@@ -85,6 +94,8 @@ class AddProcedureActivity : AppCompatActivity() {
             this,
             { _, selectedYear, selectedMonth, selectedDay ->
                 selectedDate = "$selectedDay/${selectedMonth + 1}/$selectedYear"
+                binding.dateDisplayTv.text = selectedDate
+                binding.dateDisplayTv.visibility = View.VISIBLE
             },
             year, month, day
         )
