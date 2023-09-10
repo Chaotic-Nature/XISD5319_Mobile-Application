@@ -11,7 +11,7 @@
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="match_parent"
-        android:layout_height="277dp"
+        android:layout_height="180dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -32,8 +32,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="550dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="@drawable/background_bottom"
         android:orientation="vertical"
         android:padding="32dp"
@@ -51,27 +51,26 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/emailTb"
+            style="@style/InputBoxes"
             android:layout_width="320dp"
             android:layout_height="60dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="24dp"
-            android:textColorHint="@color/green"
             app:boxBackgroundColor="@color/white"
             app:boxBackgroundMode="outline"
-            app:boxStrokeColor="@color/green"
-            app:helperTextTextColor="@color/green">
+            android:hint="jones@gmail.com">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="@string/email_example"
                 android:inputType="textEmailAddress"
-                android:padding="5dp"
-                android:textColor="@color/green"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:padding="5dp"/>
+
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -85,14 +84,13 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/passwordTb"
+            style="@style/InputBoxes"
             android:layout_width="320dp"
             android:layout_height="60dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="5dp"
-            app:boxBackgroundColor="@color/white"
             app:boxBackgroundMode="outline"
-            app:boxStrokeColor="@color/green"
             app:passwordToggleEnabled="true"
             app:passwordToggleTint="@color/green"
             app:passwordToggleTintMode="src_in">
@@ -102,7 +100,6 @@
                 android:layout_height="match_parent"
                 android:inputType="textPassword"
                 android:padding="5dp"
-                android:textColor="@color/green"
                 android:textSize="20sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -113,9 +110,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
-            android:padding="0dp"
             android:text="@string/don_t_have_an_account"
-            android:textAlignment="viewStart"
+            android:textAlignment="textStart"
             android:textColor="@color/green"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -124,8 +120,8 @@
             android:id="@+id/loginBtn"
             android:layout_width="320dp"
             android:layout_height="50dp"
-            android:layout_marginTop="5dp"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
             android:backgroundTint="@color/green"
             android:elevation="5dp"
             android:text="@string/login"

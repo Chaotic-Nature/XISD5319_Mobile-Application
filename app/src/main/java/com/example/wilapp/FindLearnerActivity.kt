@@ -26,11 +26,14 @@ class FindLearnerActivity : AppCompatActivity() {
         binding.resultsLabelTv.visibility = View.GONE
 
         binding.searchBtn.setOnClickListener {
-            val inputID = binding.idNumber.editText?.text.toString().trim()
             binding.idNumber.error = null
+            val inputID = binding.idNumber.editText?.text.toString().trim()
 
             if(inputID.isEmpty()){
                 binding.idNumber.error = "ID number cannot be empty"
+            }
+            else if(inputID.length < 13){
+                binding.idNumber.error = "Must be a valid ID number"
             }
             else{
                 learnerRef.addValueEventListener(object: ValueEventListener {

@@ -5,7 +5,7 @@
     </style>
 
     <style name="InputBoxes" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
-        <item name="boxBackgroundColor">@null</item>
+        <item name="boxBackgroundColor">@color/white</item>
         <item name="boxStrokeColor">@color/green</item>
         <item name="hintTextColor">@color/green</item>
         <item name="android:textColorHint">@color/green</item>

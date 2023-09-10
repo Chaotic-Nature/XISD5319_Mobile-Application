@@ -83,20 +83,15 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/sexTextField"
-                style="@style/InputBoxes"
+            <Spinner
+                android:id="@+id/sex_spinner"
+                style="@android:style/Widget.Spinner"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:hint="Sex">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-            </com.google.android.material.textfield.TextInputLayout>
+                android:entries="@array/sexes"
+                android:spinnerMode="dropdown" />
 
         </RelativeLayout>
 

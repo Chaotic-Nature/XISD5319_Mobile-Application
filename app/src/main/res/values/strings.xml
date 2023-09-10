@@ -7,6 +7,18 @@
         <item>Mobility test</item>
     </string-array>
 
+    <string-array name="sexes">
+        <item>Male</item>
+        <item>Female</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="Schools">
+        <item>Malibu High School</item>
+        <item>Tuscany Glen Primary</item>
+        <item>Forest Heights High</item>
+    </string-array>
+
     <!-- Eye Questions -->
     <string name="q1.1">1.1. Do you experience blurry vision or have difficulty focusing on objects?</string>
     <string name="q1.2">1.2. Do you frequently experience eye strain or fatigue, especially after extended periods of reading or screen time?</string>
