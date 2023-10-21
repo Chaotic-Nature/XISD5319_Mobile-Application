@@ -1,127 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/greenn"
-    android:gravity="center_vertical"
-    android:orientation="vertical"
-    android:padding="20dp"
+    android:fillViewport="true"
     tools:context=".AddLearnerActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/home_background"
-        android:elevation="6dp"
-        android:orientation="vertical"
-        android:padding="10dp">
+        android:gravity="center"
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/logoImage"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/logo" />
-
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp">
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/nameTextField"
-                style="@style/InputBoxes"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:hint="Name">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/surnameTextField"
-                style="@style/InputBoxes"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:hint="Surname">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/ageTextField"
-                style="@style/InputBoxes"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:hint="Age">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <Spinner
-                android:id="@+id/sex_spinner"
-                style="@android:style/Widget.Spinner"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:entries="@array/sexes"
-                android:spinnerMode="dropdown" />
-
-        </RelativeLayout>
+            android:text="Learner Details"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/my_app_on_primary"
+            android:textSize="34sp"
+            android:layout_marginBottom="20dp"
+            android:textStyle="bold" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/schoolTextField"
-            style="@style/InputBoxes"
+            android:id="@+id/nameTextField"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:hint="School">
+            android:layout_marginBottom="10dp"
+            android:hint="Name"
+            app:boxBackgroundColor="@color/my_app_on_primary"
+            app:boxBackgroundMode="filled">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:textColor="@color/my_app_primary_dark" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/surnameTextField"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:hint="Surname"
+            app:boxBackgroundColor="@color/my_app_on_primary"
+            app:boxBackgroundMode="filled">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:textColor="@color/my_app_primary_dark" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/idTextField"
-            style="@style/InputBoxes"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:hint="ID">
+            android:layout_marginBottom="10dp"
+            android:hint="ID"
+            app:boxBackgroundColor="@color/my_app_on_primary"
+            app:boxBackgroundMode="filled">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:textColor="@color/my_app_primary_dark" />
 
         </com.google.android.material.textfield.TextInputLayout>
+
+
+        <Spinner
+            android:id="@+id/schoolsSpinner"
+            style="@android:style/Widget.Spinner"
+            android:layout_width="300dp"
+            android:layout_height="62dp"
+            android:spinnerMode="dialog" />
 
         <Button
             android:id="@+id/saveBtn"
@@ -129,11 +90,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="15dp"
-            android:backgroundTint="@color/green"
             android:text="Save"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
+            android:textColor="@color/my_app_on_primary" />
+
     </LinearLayout>
 
-
-</LinearLayout>
+</ScrollView>
