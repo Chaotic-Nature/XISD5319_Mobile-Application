@@ -22,28 +22,33 @@ class Login : AppCompatActivity() {
 
         firebaseAuth = FirebaseAuth.getInstance()
 
-        binding.createAccBtn.setOnClickListener {
+        //Starts the sign up activity.
+        binding.signUpBtn.setOnClickListener {
             val intent = Intent(this, SignUp::class.java)
             startActivity(intent)
         }
 
+        //Starts the sign in user method.
         binding.loginBtn.setOnClickListener {
             signInUser()
         }
     }
 
     private fun signInUser() {
-        val email = binding.emailTb.editText?.text.toString().trim()
-        val password = binding.passwordTb.editText?.text.toString().trim()
-
+        //The errors are set to null everytime the user clicks the sign in button.
         binding.emailTb.error = null
         binding.passwordTb.error = null
 
+        val email = binding.emailTb.editText?.text.toString().trim()
+        val password = binding.passwordTb.editText?.text.toString().trim()
+
         if (email.isEmpty()) {
             binding.emailTb.error = "Email cannot be empty"
-        } else if (password.isEmpty()) {
+        }
+        else if (password.isEmpty()) {
             binding.passwordTb.error = "Password cannot be empty"
-        } else {
+        }
+        else {
             firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {

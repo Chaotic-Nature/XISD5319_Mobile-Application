@@ -1,13 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="green">#077734</color>
-    <color name="grey">#777777</color>
-    <color name="grey_background_tint">#54000000</color>
+    <!-- Primary color for your app -->
+    <color name="my_app_primary">#2E7D32</color>
+
+    <!-- Darker variant of the primary color -->
+    <color name="my_app_primary_dark">#1B5E20</color>
+
+    <!-- Secondary color for your app -->
+    <color name="my_app_secondary">#03DAC6</color>
+
+    <!-- Error color for your app -->
+    <color name="my_app_error">#B00020</color>
+
+    <!-- Text color for the primary background content -->
+    <color name="my_app_on_primary">@android:color/white</color>
+
+    <!-- Text color for the secondary background content -->
+    <color name="my_app_on_secondary">@android:color/white</color>
+
+    <!-- Text color for the primary background -->
+    <color name="my_app_on_background">@android:color/white</color>
+
+    <!-- Text color for the secondary background -->
+    <color name="my_app_on_surface">@android:color/white</color>
+
+    <!-- Color for disabled elements -->
+    <color name="my_app_disabled">#727272</color>
+
+    <!--Color for night mode-->
+    <color name="my_app_surface">#292929</color>
 </resources>

@@ -39,12 +39,17 @@
     <string name="q3.3">3.3. Have you noticed any unexplained changes in your voice, such as hoarseness or voice fatigue?</string>
     <string name="q3.4">3.4. Have you noticed any unusual lumps, bumps, or swelling in your neck or throat area?</string>
     <string name="q3.5">3.5. Do you experience recurrent or frequent throat infections?</string>
+
+
     <string name="find_learner">Find Learner</string>
     <string name="add_learner">Add Learner</string>
     <string name="login">Login</string>
     <string name="email">Email</string>
     <string name="email_example">kacey@gmail.com</string>
     <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
     <string name="don_t_have_an_account">Don\'t Have An Account?</string>
     <string name="create_an_account">Create an Account</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="already_have_an_account">Already have an account?</string>
 </resources>

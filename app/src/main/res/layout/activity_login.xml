@@ -1,135 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     android:background="@drawable/greenn"
     tools:context=".Login">
 
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="match_parent"
-        android:layout_height="180dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/greenn" />
-
-    <TextView
-        android:id="@+id/loginTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/login"
-        android:textColor="#ffffff"
-        android:textSize="48sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="@+id/imageView3"
-        app:layout_constraintStart_toStartOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="@+id/imageView3" />
-
     <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/background_bottom"
-        android:orientation="vertical"
-        android:padding="32dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageView3">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/emailTv"
+            android:id="@+id/loginTv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/email"
-            android:textColor="@color/green"
-            android:textSize="20sp"
+            android:layout_marginBottom="50dp"
+            android:text="@string/login"
+            android:textAlignment="center"
+            android:textColor="@color/my_app_on_surface"
+            android:textSize="48sp"
             android:textStyle="bold" />
 
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/emailTb"
-            style="@style/InputBoxes"
-            android:layout_width="320dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="24dp"
-            app:boxBackgroundColor="@color/white"
-            app:boxBackgroundMode="outline"
-            android:hint="jones@gmail.com">
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:hint="@string/email"
+            app:boxBackgroundColor="@color/my_app_on_surface"
+            app:boxBackgroundMode="filled">
 
             <com.google.android.material.textfield.TextInputEditText
+                style="@null"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="textEmailAddress"
-                android:textSize="20sp"
-                android:padding="5dp"/>
+                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                android:textColor="@color/my_app_primary_dark" />
 
         </com.google.android.material.textfield.TextInputLayout>
-
-        <TextView
-            android:id="@+id/passwordTv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/password"
-            android:textColor="@color/green"
-            android:textSize="20sp"
-            android:textStyle="bold" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/passwordTb"
-            style="@style/InputBoxes"
-            android:layout_width="320dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="5dp"
-            app:boxBackgroundMode="outline"
-            app:passwordToggleEnabled="true"
-            app:passwordToggleTint="@color/green"
-            app:passwordToggleTintMode="src_in">
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:hint="@string/password"
+            app:boxBackgroundColor="@color/my_app_on_surface"
+            app:boxBackgroundMode="filled"
+            app:endIconMode="password_toggle"
+            app:passwordToggleTint="@color/my_app_primary">
 
             <com.google.android.material.textfield.TextInputEditText
+                style="@null"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:padding="5dp"
-                android:textSize="20sp" />
+                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                android:textColor="@color/my_app_primary_dark" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/createAccBtn"
+            android:id="@+id/signUpBtn"
             style="@style/Widget.Material3.Button.TextButton"
-            android:layout_width="320dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
+            android:layout_marginBottom="20dp"
             android:text="@string/don_t_have_an_account"
-            android:textAlignment="textStart"
-            android:textColor="@color/green"
+            android:textAlignment="viewStart"
+            android:textColor="@color/my_app_on_surface"
             android:textSize="16sp"
             android:textStyle="bold" />
 
         <Button
             android:id="@+id/loginBtn"
-            android:layout_width="320dp"
+            style="@android:style/Widget.Material.Button"
+            android:layout_width="300dp"
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"
-            android:backgroundTint="@color/green"
             android:elevation="5dp"
             android:text="@string/login"
-            android:textColor="#ffffff"
-            android:textSize="16sp"
-            app:cornerRadius="50dp" />
+            android:textSize="16sp" />
 
     </LinearLayout>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

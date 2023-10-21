@@ -9,7 +9,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="Wellness Mobile Clinic"
         android:supportsRtl="true"
-        android:theme="@style/Theme.WilApp"
+        android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
             android:name=".EditScreeningActivity"

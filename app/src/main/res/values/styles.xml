@@ -1,25 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="LearnerInformationText" parent="Widget.AppCompat.TextView">
-        <item name="android:textColor">@color/black</item>
-    </style>
-
-    <style name="InputBoxes" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
-        <item name="boxBackgroundColor">@color/white</item>
-        <item name="boxStrokeColor">@color/green</item>
-        <item name="hintTextColor">@color/green</item>
-        <item name="android:textColorHint">@color/green</item>
-    </style>
-
-    <style name="ScreeningQuestions" parent="Widget.AppCompat.TextView">
-        <item name="android:textColor">@color/black</item>
-        <item name="android:layout_marginTop">4dp</item>
-
-    </style>
-    <style name="GreenDatePickerDialog" parent="ThemeOverlay.MaterialComponents.Dialog">
-        <item name="colorPrimary">@color/green</item>
-        <item name="colorPrimaryVariant">#1B5E20</item>
-        <item name="colorOnPrimary">@color/white</item>
-    </style>
 
 </resources>
