@@ -21,7 +21,7 @@ class AddLearnerActivity : AppCompatActivity() {
         binding = ActivityAddLearnerBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.schoolsSpinner.adapter = populateSpinner(R.array.Schools)
+        binding.schoolsSpinner.adapter = populateSpinner(R.array.schools)
 
         binding.saveBtn.setOnClickListener {
             binding.idTextField.error = null

@@ -3,6 +3,7 @@
     <!-- Primary color for your app -->
     <color name="my_app_primary">#2E7D32</color>
 
+    <color name="light_green">#8BFF90</color>
     <!-- Darker variant of the primary color -->
     <color name="my_app_primary_dark">#1B5E20</color>
 

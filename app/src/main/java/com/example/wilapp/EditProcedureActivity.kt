@@ -131,7 +131,7 @@ class EditProcedureActivity : AppCompatActivity() {
         val day = calendar.get(Calendar.DAY_OF_MONTH)
 
         val datePickerDialog = DatePickerDialog(
-            this, R.style.GreenDatePickerDialog,
+            this,
             { _, selectedYear, selectedMonth, selectedDay ->
                 selectedDate = "$selectedDay/${selectedMonth + 1}/$selectedYear"
                 binding.dateDisplayTv.text = selectedDate

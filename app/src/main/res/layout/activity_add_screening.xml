@@ -9,198 +9,57 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="20dp">
 
         <TextView
             android:id="@+id/screening_heading_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Screening"
-            android:textColor="@color/green"
-            android:textSize="20sp"/>
-
-
-        <TextView
-            android:id="@+id/eye_heading_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Eye"
-            android:textColor="@color/green"
-            android:textSize="16sp" />
-
-        <View
-            android:id="@+id/divider1"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/green" />
-
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/qtn_1.1_s"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="3dp"
-            android:text="@string/q1.1"
-            android:textColor="@color/black"
-            app:switchPadding="20dp"
-            app:thumbTint="@color/green" />
-
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/qtn_1.2_s"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:text="@string/q1.2"
-            app:switchPadding="20dp"
-            app:thumbTint="@color/green" />
-
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/qtn_1.3_s"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:text="@string/q1.3"
-            app:switchPadding="20dp"
-            app:thumbTint="@color/green" />
-
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/qtn_1.4_s"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:text="@string/q1.4"
-            app:switchPadding="20dp"
-            app:thumbTint="@color/green" />
-
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/qtn_1.5_s"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:text="@string/q1.5"
-            app:switchPadding="20dp"
-            app:thumbTint="@color/green" />
+            android:textSize="20sp"
+            android:layout_marginBottom="10dp"/>
 
         <TextView
-            android:id="@+id/ear_heading_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Eye Screening"
+            android:textSize="20sp"
+            android:layout_marginBottom="5dp"/>
+
+        <LinearLayout
+            android:id="@+id/eyeQuestionnaireLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Ear"
-            android:textColor="@color/green"
-            android:textSize="16sp" />
-
-        <View
-            android:id="@+id/divider_2"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/green" />
-
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/qtn_2.1_s"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:text="@string/q2.1"
-            app:switchPadding="20dp"
-            app:thumbTint="@color/green"/>
-
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/qtn_2.2_s"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:text="@string/q2.2"
-            app:switchPadding="20dp"
-            tools:ignore="VisualLintButtonSize"
-            app:thumbTint="@color/green"/>
-
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/qtn_2.3_s"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:text="@string/q2.3"
-            app:switchPadding="20dp"
-            app:thumbTint="@color/green"/>
-
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/qtn_2.4_s"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:text="@string/q2.4"
-            app:switchPadding="20dp"
-            app:thumbTint="@color/green"/>
-
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/qtn_2.5_s"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:text="@string/q2.5"
-            app:switchPadding="20dp"
-            app:thumbTint="@color/green"/>
+            android:orientation="vertical"
+            android:layout_marginBottom="10dp"/>
 
         <TextView
-            android:id="@+id/throat_heading_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ear Screening"
+            android:textSize="20sp"
+            android:layout_marginBottom="5dp"/>
+
+        <LinearLayout
+            android:id="@+id/earQuestionnaireLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Throat"
-            android:textColor="@color/green"
-            android:textSize="16sp" />
+            android:orientation="vertical"
+            android:layout_marginBottom="10dp"/>
 
-        <View
-            android:id="@+id/divider_3"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/green" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Throat Screening"
+            android:textSize="20sp"
+            android:layout_marginBottom="5dp"/>
 
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/qtn_3.1_s"
+        <LinearLayout
+            android:id="@+id/throatQuestionnaireLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:text="@string/q3.1"
-            app:switchPadding="20dp"
-            app:thumbTint="@color/green"/>
-
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/qtn_3.2_s"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:text="@string/q3.2"
-            app:switchPadding="20dp"
-            app:thumbTint="@color/green"/>
-
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/qtn_3.3_s"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:minHeight="48dp"
-            android:text="@string/q3.3"
-            app:switchPadding="20dp"
-            app:thumbTint="@color/green"/>
-
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/qtn_3.4_s"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:text="@string/q3.4"
-            app:switchPadding="20dp" />
-
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/qtn_3.5_s"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:text="@string/q3.5"
-            app:switchPadding="20dp"
-            app:thumbTint="@color/green"/>
+            android:orientation="vertical"/>
 
         <Button
             android:id="@+id/save_btn"
@@ -208,10 +67,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
-            android:backgroundTint="@color/green"
             android:backgroundTintMode="src_over"
-            android:text="Save"
-            app:cornerRadius="10dp" />
+            android:text="Save" />
+
         <Button
             android:id="@+id/cancel_btn"
             android:layout_width="200dp"
@@ -220,8 +78,7 @@
             android:layout_marginTop="20dp"
             android:backgroundTint="#B71C1C"
             android:backgroundTintMode="src_over"
-            android:text="Cancel"
-            app:cornerRadius="10dp" />
+            android:text="Cancel" />
 
 
     </LinearLayout>

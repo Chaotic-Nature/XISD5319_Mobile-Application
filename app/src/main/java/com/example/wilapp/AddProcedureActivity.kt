@@ -8,10 +8,10 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.wilapp.databinding.ActivityAddProcedureBinding
-import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.datepicker.MaterialStyledDatePickerDialog
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import java.util.*
+import java.util.Calendar
 
 class AddProcedureActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddProcedureBinding
@@ -29,6 +29,14 @@ class AddProcedureActivity : AppCompatActivity() {
 
         binding.procedureCategorySpinner.adapter = populateSpinner()
 
+        val arrayAdapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.doctors,
+            android.R.layout.simple_spinner_item
+        )
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.procedurePerformerSpinner.adapter = arrayAdapter
+
         binding.procedureDateBtn.setOnClickListener {
             showDatePicker()
         }
@@ -38,7 +46,7 @@ class AddProcedureActivity : AppCompatActivity() {
             val category = binding.procedureCategorySpinner.selectedItem.toString()
             val description = binding.procedureDescriptionTb.editText?.text.toString().trim()
             val date = selectedDate
-            val procedurePerformer = binding.procedurePerformerTb.editText?.text.toString().trim()
+            val procedurePerformer = binding.procedurePerformerSpinner.selectedItem.toString()
 
             if (category.isNotEmpty() && description.isNotEmpty() && date.isNotEmpty() && procedurePerformer.isNotEmpty()) {
                 val procedureId = procedureReference.child(learner)
@@ -92,8 +100,10 @@ class AddProcedureActivity : AppCompatActivity() {
 
         val datePickerDialog = DatePickerDialog(
             this,
-            { _, selectedYear, selectedMonth, selectedDay ->
-                selectedDate = "$selectedDay/${selectedMonth + 1}/$selectedYear"
+            R.style.GreenDatePickerDialogStyle, // Apply the custom style here
+            DatePickerDialog.OnDateSetListener { _, selectedYear, selectedMonth, selectedDay ->
+                val formattedDate = String.format("%02d/%02d/%04d", selectedDay, selectedMonth + 1, selectedYear)
+                selectedDate = formattedDate
                 binding.dateDisplayTv.text = selectedDate
                 binding.dateDisplayTv.visibility = View.VISIBLE
             },
@@ -102,4 +112,5 @@ class AddProcedureActivity : AppCompatActivity() {
 
         datePickerDialog.show()
     }
+
 }

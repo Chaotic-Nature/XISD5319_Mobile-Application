@@ -62,13 +62,14 @@ class LearnerProfileActivity : AppCompatActivity() {
                         displayText += "Q: ${q.question}\nA: ${q.answer}\n\n"
                         binding.addScreeningBtn.isEnabled = false
                         binding.noScreeningTv.visibility = View.GONE
-                        binding.addScreeningBtn.setBackgroundColor(ContextCompat.getColor(this@LearnerProfileActivity, R.color.grey))
+                        binding.screeningResultsTv.visibility = View.VISIBLE
+                        binding.addScreeningBtn
+                            .setBackgroundColor(ContextCompat.getColor(this@LearnerProfileActivity,
+                                R.color.my_app_disabled))
 
                     }
                 }
-                binding.screeningResultsTv.visibility = View.VISIBLE
                 binding.screeningResultsTv.text = displayText
-
             }
             override fun onCancelled(error: DatabaseError) {
                 Toast.makeText(this@LearnerProfileActivity,

@@ -1,164 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/greenn"
-    android:backgroundTint="@color/grey_background_tint"
-    android:backgroundTintMode="src_over"
-    android:orientation="vertical"
-    android:padding="20dp"
+    android:fillViewport="true"
     tools:context=".AddProcedureActivity">
 
-    <TextView
-        android:id="@+id/procedureHeading_tv"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add Procedure"
-        android:textColor="@color/white"
-        android:textSize="20sp" />
+        android:gravity="center"
+        android:padding="20dp"
+        android:orientation="vertical">
 
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="5dp"
-        android:background="@color/white" />
-
-    <TextView
-        android:id="@+id/spinnerLabel_tv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:labelFor="@id/procedureCategory_spinner"
-        android:text="Select a procedure category below"
-        android:textColor="@color/white" />
-
-    <Spinner
-        android:id="@+id/procedureCategory_spinner"
-        style="@android:style/Widget.Spinner"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"
-        android:minHeight="48dp" />
-
-    <TextView
-        android:id="@+id/descriptionLabel_tv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Description"
-        android:textColor="@color/white" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/procedureDescription_tb"
-        android:layout_width="300dp"
-        android:layout_height="150dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"
-        app:boxBackgroundColor="@color/white"
-        app:boxBackgroundMode="outline"
-        app:boxStrokeColor="@color/green">
-
-        <EditText
+        <TextView
+            android:id="@+id/procedureHeading_tv"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="start|top"
-            android:inputType="textMultiLine"
-            android:paddingStart="5dp"
-            android:paddingTop="5dp"
-            android:paddingEnd="5dp"
-            android:paddingBottom="5dp"
-            android:textColor="@color/green" />
+            android:layout_height="wrap_content"
+            android:text="Add Procedure"
+            android:textColor="@color/my_app_on_primary"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <TextView
-        android:id="@+id/procedurePerformerLabel_tv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Person who performed procedure"
-        android:textColor="@color/white" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/procedurePerformer_tb"
-        style="@style/InputBoxes"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"
-        app:boxBackgroundColor="@color/white"
-        app:boxBackgroundMode="outline">
-
-        <com.google.android.material.textfield.TextInputEditText
+        <View
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="start|center_vertical"
-            android:gravity="start|center_vertical"
-            android:inputType="textAutoComplete"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:textColor="@color/green" />
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/my_app_on_primary" />
 
-    </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:id="@+id/spinnerLabel_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:labelFor="@id/procedureCategory_spinner"
+            android:text="Select a procedure category below"
+            android:textColor="@color/my_app_on_primary"
+            android:textSize="16sp" />
 
-    <Button
-        android:id="@+id/procedureDate_btn"
-        style="@style/Widget.Material3.Button.ElevatedButton"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@color/green"
-        android:text="Date performed"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        app:cornerRadius="10dp"
-        app:strokeColor="@color/white"
-        app:strokeWidth="0.5dp" />
+        <Spinner
+            android:id="@+id/procedureCategory_spinner"
+            style="@android:style/Widget.Spinner"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:minHeight="48dp" />
 
-    <TextView
-        android:id="@+id/dateDisplay_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="03/01/2001"
-        android:textColor="@color/white"
-        android:textSize="20sp" />
+        <TextView
+            android:id="@+id/descriptionLabel_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Description"
+            android:textColor="@color/my_app_on_primary"
+            android:textSize="16sp" />
 
-    <Button
-        android:id="@+id/save_btn"
-        style="@style/Widget.Material3.Button"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@color/green"
-        android:backgroundTintMode="src_over"
-        android:elevation="6dp"
-        android:text="Save"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        app:cornerRadius="10dp"
-        app:strokeColor="@color/white"
-        app:strokeWidth="0.5dp" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/procedureDescription_tb"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            app:boxBackgroundColor="@color/my_app_on_primary"
+            app:boxBackgroundMode="filled">
 
-    <Button
-        android:id="@+id/cancel_btn"
-        style="@style/Widget.Material3.Button"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="#FA3122"
-        android:backgroundTintMode="src_over"
-        android:elevation="6dp"
-        android:text="Cancel"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        app:cornerRadius="10dp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="start|top"
+                android:inputType="textMultiLine"
+                android:paddingStart="5dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:paddingBottom="5dp"
+                android:autofillHints="" />
 
-</LinearLayout>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/procedurePerformerLabel_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Person who performed procedure"
+            android:textColor="@color/my_app_on_primary"
+            android:textSize="16sp" />
+
+        <Spinner
+            android:id="@+id/procedurePerformer_spinner"
+            style="@android:style/Widget.Spinner"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:minHeight="48dp" />
+
+        <Button
+            android:id="@+id/procedureDate_btn"
+            style="@style/Widget.Material3.Button.ElevatedButton"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="Date performed"
+            android:textSize="16sp" />
+
+
+
+        <TextView
+            android:id="@+id/dateDisplay_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="03/01/2001"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/save_btn"
+            style="@style/Widget.Material3.Button"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:backgroundTintMode="src_over"
+            android:elevation="6dp"
+            android:text="Save"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/cancel_btn"
+            style="@style/Widget.Material3.Button"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#FA3122"
+            android:backgroundTintMode="src_over"
+            android:elevation="6dp"
+            android:text="Cancel"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+</ScrollView>
