@@ -3,10 +3,11 @@ package com.example.wilapp
 import android.content.Intent
 import android.os.Bundle
 import android.widget.LinearLayout
-import android.widget.Switch
+import com.google.android.material.switchmaterial.SwitchMaterial
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.example.wilapp.databinding.ActivityEditScreeningBinding
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -48,7 +49,7 @@ class EditScreeningActivity : AppCompatActivity() {
 
     private fun saveEditedAnswers(questionAnswersRef: DatabaseReference) {
         for (i in 0 until answers.size) {
-            val switch = binding.editScreeningLayout.getChildAt(i * 2 + 1) as Switch
+            val switch = binding.editScreeningLayout.getChildAt(i * 2 + 1) as SwitchMaterial
             answers[i].answer = switch.isChecked
         }
 
@@ -89,8 +90,10 @@ class EditScreeningActivity : AppCompatActivity() {
         for (answer in answers) {
             val questionTextView = TextView(this)
             questionTextView.text = answer.question
+            questionTextView.setTextColor(ContextCompat.getColor(this, R.color.my_app_primary))
 
-            val switch = Switch(this)
+
+            val switch = SwitchMaterial(this)
             switch.isChecked = answer.answer
 
             editScreeningLayout.addView(questionTextView)

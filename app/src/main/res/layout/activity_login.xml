@@ -73,8 +73,20 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="5dp"
             android:text="@string/don_t_have_an_account"
+            android:textAlignment="viewStart"
+            android:textColor="@color/my_app_on_surface"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/forgotPasswordBtn"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="Forgot Password?"
             android:textAlignment="viewStart"
             android:textColor="@color/my_app_on_surface"
             android:textSize="16sp"

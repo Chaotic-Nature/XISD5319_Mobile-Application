@@ -23,8 +23,8 @@ class FindLearnerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityFindLearnerBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        //Hiding the results label textview.
+        val saIdRegex = """^\d{13}$""".toRegex()
+        // Hiding the results label TextView.
         binding.resultsLabelTv.visibility = View.GONE
 
         binding.searchBtn.setOnClickListener {
@@ -33,11 +33,9 @@ class FindLearnerActivity : AppCompatActivity() {
 
             if (inputID.isEmpty()) {
                 binding.idNumber.error = "ID number cannot be empty"
-            }
-            else if (inputID.length < 13) {
+            } else if (!inputID.matches(saIdRegex)) {
                 binding.idNumber.error = "Must be a valid ID number"
-            }
-            else {
+            } else {
                 findLearner(inputID)
             }
         }
@@ -54,27 +52,36 @@ class FindLearnerActivity : AppCompatActivity() {
                         learnerList.add(learner)
                     }
                 }
-                binding.resultsLabelTv.visibility = View.VISIBLE
-                val adapter = LearnerModelAdapter(learnerList)
-                binding.learnerInfoRv.layoutManager = LinearLayoutManager(this@FindLearnerActivity)
-                binding.learnerInfoRv.adapter = adapter
 
-                adapter.setOnClickListener(object : LearnerModelAdapter.OnClickListener {
-                    override fun onClick(position: Int, learner: LearnerModel) {
-                        intent = Intent(
-                            this@FindLearnerActivity,
-                            LearnerProfileActivity::class.java
-                        )
-                        intent.putExtra("learner", learner.id)
-                        startActivity(intent)
-                    }
-                })
+                if (learnerList.isNotEmpty()) {
+                    binding.resultsLabelTv.text = "Results"
+                    binding.resultsLabelTv.visibility = View.VISIBLE
+                    val adapter = LearnerModelAdapter(learnerList)
+                    binding.learnerInfoRv.layoutManager = LinearLayoutManager(this@FindLearnerActivity)
+                    binding.learnerInfoRv.adapter = adapter
+
+                    adapter.setOnClickListener(object : LearnerModelAdapter.OnClickListener {
+                        override fun onClick(position: Int, learner: LearnerModel) {
+                            val intent = Intent(
+                                this@FindLearnerActivity,
+                                LearnerProfileActivity::class.java
+                            )
+                            intent.putExtra("learner", learner.id)
+                            startActivity(intent)
+                        }
+                    })
+                } else {
+                    binding.resultsLabelTv.visibility = View.VISIBLE
+                    binding.resultsLabelTv.text = "No results"
+                    Toast.makeText(this@FindLearnerActivity,"Learner does not exist", Toast.LENGTH_LONG).show()
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {
                 Toast.makeText(
                     this@FindLearnerActivity,
-                    "Failed to read value. ${error.toException()}", Toast.LENGTH_LONG
+                    "Failed to read value. ${error.toException()}",
+                    Toast.LENGTH_LONG
                 ).show()
             }
         })

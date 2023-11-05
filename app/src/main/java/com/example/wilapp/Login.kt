@@ -28,10 +28,36 @@ class Login : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.forgotPasswordBtn.setOnClickListener {
+            binding.emailTb.error = null
+
+            val email = binding.emailTb.editText?.text.toString().trim()
+
+            if (email.isEmpty()) {
+                binding.emailTb.error = "Email cannot be empty"
+            }
+            else{
+                sendPasswordResetEmail(email)
+            }
+
+        }
+
         //Starts the sign in user method.
         binding.loginBtn.setOnClickListener {
             signInUser()
         }
+    }
+    private fun sendPasswordResetEmail(email: String) {
+        FirebaseAuth.getInstance().sendPasswordResetEmail(email)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    // Password reset email sent successfully
+                    Toast.makeText(this, "Password reset email sent", Toast.LENGTH_SHORT).show()
+                } else {
+                    // Handle password reset email sending failure
+                    Toast.makeText(this, "Failed to send password reset email", Toast.LENGTH_SHORT).show()
+                }
+            }
     }
 
     private fun signInUser() {
@@ -54,6 +80,7 @@ class Login : AppCompatActivity() {
                     if (task.isSuccessful) {
                         val intent = Intent(this, HomeActivity::class.java)
                         startActivity(intent)
+                        finish()
                     } else {
                         handleSignInError(task.exception)
                     }

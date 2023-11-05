@@ -61,6 +61,7 @@ class SignUp : AppCompatActivity() {
                     intent = Intent(this , Login::class.java)
                     showMessage("Successfully created account")
                     startActivity(intent)
+                    finish()
 
                 } else {
                     handleSignUpError(it.exception)

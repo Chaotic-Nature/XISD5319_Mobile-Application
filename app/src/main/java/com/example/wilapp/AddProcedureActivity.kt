@@ -8,7 +8,6 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.wilapp.databinding.ActivityAddProcedureBinding
-import com.google.android.material.datepicker.MaterialStyledDatePickerDialog
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import java.util.Calendar
@@ -100,8 +99,7 @@ class AddProcedureActivity : AppCompatActivity() {
 
         val datePickerDialog = DatePickerDialog(
             this,
-            R.style.GreenDatePickerDialogStyle, // Apply the custom style here
-            DatePickerDialog.OnDateSetListener { _, selectedYear, selectedMonth, selectedDay ->
+            { _, selectedYear, selectedMonth, selectedDay ->
                 val formattedDate = String.format("%02d/%02d/%04d", selectedDay, selectedMonth + 1, selectedYear)
                 selectedDate = formattedDate
                 binding.dateDisplayTv.text = selectedDate
@@ -109,7 +107,6 @@ class AddProcedureActivity : AppCompatActivity() {
             },
             year, month, day
         )
-
         datePickerDialog.show()
     }
 

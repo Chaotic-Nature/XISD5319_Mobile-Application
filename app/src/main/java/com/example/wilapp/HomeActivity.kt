@@ -23,5 +23,16 @@ class HomeActivity : AppCompatActivity() {
             val intent = Intent(this, AddLearnerActivity::class.java)
             startActivity(intent)
         }
+        binding.logoutBtn.setOnClickListener {
+            val intent = Intent(this, Login::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish() // This will finish the current activity when the back button is pressed.
+    }
+
 }

@@ -3,7 +3,7 @@ package com.example.wilapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Switch
+import com.google.android.material.switchmaterial.SwitchMaterial
 import android.widget.TextView
 import android.widget.Toast
 import com.example.wilapp.databinding.ActivityAddScreeningBinding
@@ -22,20 +22,20 @@ class AddScreeningActivity : AppCompatActivity() {
         val learner = intent.extras?.getString("learner").toString()
 
         for (question in resources.getStringArray(R.array.eyeScreeningQuestions)) {
-            val switch = Switch(this)
+            val switch = SwitchMaterial(this)
             switch.text = "Question: $question"
             binding.eyeQuestionnaireLayout.addView(switch)
         }
 
         for (question in resources.getStringArray(R.array.earScreeningQuestions)) {
 
-            val switch = Switch(this)
+            val switch = SwitchMaterial(this)
             switch.text = "Question: $question"
             binding.earQuestionnaireLayout.addView(switch)
         }
 
         for (question in resources.getStringArray(R.array.throatScreeningQuestions)) {
-            val switch = Switch(this)
+            val switch = SwitchMaterial(this)
             switch.text = "Question: $question"
 
             binding.throatQuestionnaireLayout.addView(switch)
@@ -46,22 +46,19 @@ class AddScreeningActivity : AppCompatActivity() {
             val answers = mutableListOf<ScreeningQuestionsModel>()
             var successCount = 0
 
-            for (i in 0 until binding.eyeQuestionnaireLayout.childCount step 2) {
-                val textview = binding.eyeQuestionnaireLayout.getChildAt(i ) as TextView
-                val switch = binding.eyeQuestionnaireLayout.getChildAt(i + 1) as Switch
-                answers.add(ScreeningQuestionsModel(learner, textview.text.toString() , switch.isChecked))
+            for (i in 0 until binding.eyeQuestionnaireLayout.childCount) {
+                val switch = binding.eyeQuestionnaireLayout.getChildAt(i) as SwitchMaterial
+                answers.add(ScreeningQuestionsModel(learner, switch.text.toString() , switch.isChecked))
             }
 
-            for (i in 0 until binding.earQuestionnaireLayout.childCount step 2) {
-                val textview = binding.earQuestionnaireLayout.getChildAt(i ) as TextView
-                val switch = binding.earQuestionnaireLayout.getChildAt(i + 1) as Switch
-                answers.add(ScreeningQuestionsModel(learner, textview.text.toString() , switch.isChecked))
+            for (i in 0 until binding.earQuestionnaireLayout.childCount) {
+                val switch = binding.earQuestionnaireLayout.getChildAt(i) as SwitchMaterial
+                answers.add(ScreeningQuestionsModel(learner, switch.text.toString() , switch.isChecked))
             }
 
-            for (i in 0 until binding.throatQuestionnaireLayout.childCount step 2) {
-                val textview = binding.throatQuestionnaireLayout.getChildAt(i ) as TextView
-                val switch = binding.throatQuestionnaireLayout.getChildAt(i + 1) as Switch
-                answers.add(ScreeningQuestionsModel(learner, textview.text.toString() , switch.isChecked))
+            for (i in 0 until binding.throatQuestionnaireLayout.childCount) {
+                val switch = binding.throatQuestionnaireLayout.getChildAt(i) as SwitchMaterial
+                answers.add(ScreeningQuestionsModel(learner, switch.text.toString() , switch.isChecked))
             }
 
             for (answer in answers) {
