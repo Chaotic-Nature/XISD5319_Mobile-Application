@@ -1,112 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/greenn"
-    android:fillViewport="true"
-    tools:context=".SignUp">
+    android:background="@drawable/green_background_img"
+    tools:context=".SignUpActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <!--Acts as a loading icon-->
+    <ProgressBar
+        android:id="@+id/signUpPb"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
-        <!--Heading-->
-        <TextView
-            android:id="@+id/signupTv"
+    <!--The scrollview allows the user to scroll to the next input field while the keyboard is open-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="50dp"
-            android:text="@string/sign_up"
-            android:textAlignment="center"
-            android:textColor="@color/my_app_on_primary"
-            android:textSize="48sp"
-            android:textStyle="bold" />
+            android:gravity="center"
+            android:orientation="vertical">
 
-        <!--Email textbox-->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/emailTb"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:hint="@string/email"
-            app:boxBackgroundColor="@color/my_app_on_surface"
-            app:boxBackgroundMode="filled">
-
-            <com.google.android.material.textfield.TextInputEditText
+            <!--Heading-->
+            <TextView
+                android:id="@+id/signupTv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/my_app_primary_dark" />
+                android:layout_marginBottom="50dp"
+                android:text="@string/sign_up"
+                android:textAlignment="center"
+                android:textColor="@color/my_app_on_primary"
+                android:textSize="48sp"
+                android:textStyle="bold" />
 
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <!--Password textbox-->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/passwordTb"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:hint="@string/password"
-            app:boxBackgroundColor="@color/my_app_on_surface"
-            app:boxBackgroundMode="filled"
-            app:boxCollapsedPaddingTop="0dp"
-            app:endIconMode="password_toggle"
-            app:passwordToggleTint="@color/my_app_primary">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
+            <!--Email textbox-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/emailTb"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:textColor="@color/my_app_primary_dark" />
+                android:layout_marginBottom="10dp"
+                android:hint="@string/email"
+                app:boxBackgroundColor="@color/my_app_on_surface"
+                app:boxBackgroundMode="filled">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/my_app_primary_dark" />
 
-        <!--Confirm password textbox-->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/confirmPasswordTb"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:hint="@string/confirm_password"
-            app:boxBackgroundColor="@color/my_app_on_surface"
-            app:boxBackgroundMode="filled"
-            app:endIconMode="password_toggle"
-            app:passwordToggleTint="@color/my_app_primary">
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
+            <!--Password textbox-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/passwordTb"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:textColor="@color/my_app_primary_dark" />
+                android:layout_marginBottom="10dp"
+                android:hint="@string/password"
+                app:boxBackgroundColor="@color/my_app_on_surface"
+                app:boxBackgroundMode="filled"
+                app:boxCollapsedPaddingTop="0dp"
+                app:endIconMode="password_toggle"
+                app:passwordToggleTint="@color/my_app_primary">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:textColor="@color/my_app_primary_dark" />
 
-        <!--Sign in / Log in button-->
-        <Button
-            android:id="@+id/loginBtn"
-            style="@style/Widget.Material3.Button.TextButton"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="20dp"
-            android:text="@string/already_have_an_account"
-            android:textAlignment="viewStart"
-            android:textColor="@color/my_app_on_primary"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <!--Register / Sign up button-->
-        <Button
-            android:id="@+id/signUpBtn"
-            style="@android:style/Widget.Material.Button"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_horizontal"
-            android:elevation="5dp"
-            android:text="@string/sign_up"
-            android:textSize="16sp" />
-    </LinearLayout>
-</ScrollView>
+            <!--Confirm password textbox-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/confirmPasswordTb"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:hint="@string/confirm_password"
+                app:boxBackgroundColor="@color/my_app_on_surface"
+                app:boxBackgroundMode="filled"
+                app:endIconMode="password_toggle"
+                app:passwordToggleTint="@color/my_app_primary">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:textColor="@color/my_app_primary_dark" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!--Sign in / Log in button-->
+            <Button
+                android:id="@+id/loginBtn"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="20dp"
+                android:text="@string/already_have_an_account"
+                android:textAlignment="viewStart"
+                android:textColor="@color/my_app_on_primary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <!--Register / Sign up button-->
+            <Button
+                android:id="@+id/signUpBtn"
+                style="@android:style/Widget.Material.Button"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:elevation="5dp"
+                android:text="@string/sign_up"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
