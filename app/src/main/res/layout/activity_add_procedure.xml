@@ -62,7 +62,8 @@
                 android:layout_height="wrap_content"
                 android:inputType="none"
                 android:textColor="@color/green"
-                app:simpleItems="@array/doctors" />
+                app:simpleItems="@array/doctors"
+                tools:ignore="SpeakableTextPresentCheck" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -89,7 +90,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="start|top"
-                android:inputType="text" />
+                android:inputType="text"
+                tools:ignore="SpeakableTextPresentCheck" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -117,7 +119,8 @@
                 android:layout_height="wrap_content"
                 android:inputType="none"
                 android:textColor="@color/green"
-                app:simpleItems="@array/procedureCategories" />
+                app:simpleItems="@array/procedureCategories"
+                tools:ignore="SpeakableTextPresentCheck" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

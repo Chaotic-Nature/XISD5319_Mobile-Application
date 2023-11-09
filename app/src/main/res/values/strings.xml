@@ -74,4 +74,13 @@
     <string name="id">ID</string>
     <string name="name">Name</string>
     <string name="surname">Surname</string>
+    <string name="school_drop_down">School drop down list</string>
+    <string name="cancel">Cancel</string>
+    <string name="_03_01_2001">03/01/2001</string>
+    <string name="edit_procedure_description">Edit procedure description</string>
+    <string name="date_performed">Date performed</string>
+    <string name="edit_procedure">Edit Procedure</string>
+    <string name="edit_the_procedure_performing_doctor">Edit the procedure performing doctor</string>
+    <string name="edit_the_procedure_category_below">Edit the procedure category below</string>
+
 </resources>

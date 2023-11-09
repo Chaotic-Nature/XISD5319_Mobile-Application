@@ -107,9 +107,11 @@
                     android:id="@+id/schoolsDropDownAcv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="@string/school_drop_down"
                     android:inputType="none"
                     android:textColor="@color/green"
-                    app:simpleItems="@array/schools" />
+                    app:simpleItems="@array/schools"
+                    tools:ignore="SpeakableTextPresentCheck" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

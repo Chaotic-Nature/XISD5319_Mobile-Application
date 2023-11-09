@@ -54,7 +54,8 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:textAlignment="center"
-                android:textColor="@color/green" />
+                android:textColor="@color/green"
+                tools:ignore="SpeakableTextPresentCheck" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

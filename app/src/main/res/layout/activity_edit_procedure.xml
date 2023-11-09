@@ -25,7 +25,7 @@
             android:id="@+id/procedureHeading_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Edit Procedure"
+            android:text="@string/edit_procedure"
             android:textAlignment="center"
             android:textColor="@color/green"
             android:textSize="20sp"
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:labelFor="@id/procedureCategory"
-            android:text="Edit the procedure category below"
+            android:text="@string/edit_the_procedure_category_below"
             android:textColor="#000000"
             android:textSize="16sp" />
 
@@ -62,7 +62,8 @@
                 android:layout_height="wrap_content"
                 android:inputType="none"
                 android:textColor="@color/green"
-                app:simpleItems="@array/doctors" />
+                app:simpleItems="@array/doctors"
+                tools:ignore="LabelFor,SpeakableTextPresentCheck" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -71,7 +72,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Edit procedure description"
+            android:text="@string/edit_procedure_description"
             android:textColor="#000000"
             android:textSize="16sp" />
 
@@ -86,7 +87,9 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="text" />
+                android:inputType="text"
+                tools:ignore="LabelFor,SpeakableTextPresentCheck"
+                android:autofillHints="" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -95,7 +98,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Edit the procedure performing doctor"
+            android:text="@string/edit_the_procedure_performing_doctor"
             android:textColor="#000000"
             android:textSize="16sp" />
 
@@ -114,7 +117,8 @@
                 android:layout_height="wrap_content"
                 android:inputType="none"
                 android:textColor="@color/green"
-                app:simpleItems="@array/procedureCategories" />
+                app:simpleItems="@array/procedureCategories"
+                tools:ignore="LabelFor,SpeakableTextPresentCheck" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -126,7 +130,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:text="Date performed"
+            android:text="@string/date_performed"
             android:textSize="16sp" />
 
 
@@ -135,7 +139,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="03/01/2001"
+            android:text="@string/_03_01_2001"
             android:textSize="20sp" />
 
         <LinearLayout
@@ -151,7 +155,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/light_red"
                 android:elevation="6dp"
-                android:text="Cancel"
+                android:text="@string/cancel"
                 android:textSize="16sp" />
 
             <Button
@@ -161,7 +165,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:elevation="6dp"
-                android:text="Save"
+                android:text="@string/save"
                 android:textSize="16sp" />
 
 
