@@ -1,93 +1,111 @@
 package com.example.wilapp
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.google.android.material.switchmaterial.SwitchMaterial
-import android.widget.TextView
-import android.widget.Toast
+import android.util.Log
+import android.view.View
+import android.widget.LinearLayout
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.forEach
 import com.example.wilapp.databinding.ActivityAddScreeningBinding
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
+import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.switchmaterial.SwitchMaterial
+import com.google.firebase.database.FirebaseDatabase
 
 class AddScreeningActivity : AppCompatActivity() {
-    private lateinit var binding : ActivityAddScreeningBinding
-    private val database = Firebase.database
-    private var wellnessMobileClinicRef = database.getReference("screeningQuestions")
+    private lateinit var binding: ActivityAddScreeningBinding
+    private lateinit var database: FirebaseDatabase
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddScreeningBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val learner = intent.extras?.getString("learner").toString()
+        database = FirebaseDatabase.getInstance()
 
-        for (question in resources.getStringArray(R.array.eyeScreeningQuestions)) {
+        displayQuestions()
+        setupSaveButton(learner)
+        setupCancelButton(learner)
+    }
+
+    private fun displayQuestions() {
+        addQuestionsToLayout(R.array.eyeScreeningQuestions, binding.eyeQuestionnaireLayout)
+        addQuestionsToLayout(R.array.earScreeningQuestions, binding.earQuestionnaireLayout)
+        addQuestionsToLayout(R.array.throatScreeningQuestions, binding.throatQuestionnaireLayout)
+    }
+
+    private fun addQuestionsToLayout(questionArrayId: Int, layout: LinearLayout) {
+        resources.getStringArray(questionArrayId).forEach { questionText ->
             val switch = SwitchMaterial(this)
-            switch.text = "Question: $question"
-            binding.eyeQuestionnaireLayout.addView(switch)
+            val question = "Question: $questionText"
+            switch.text = question
+            layout.addView(switch)
         }
+    }
 
-        for (question in resources.getStringArray(R.array.earScreeningQuestions)) {
-
-            val switch = SwitchMaterial(this)
-            switch.text = "Question: $question"
-            binding.earQuestionnaireLayout.addView(switch)
-        }
-
-        for (question in resources.getStringArray(R.array.throatScreeningQuestions)) {
-            val switch = SwitchMaterial(this)
-            switch.text = "Question: $question"
-
-            binding.throatQuestionnaireLayout.addView(switch)
-        }
-
-
+    private fun setupSaveButton(learner: String) {
+        binding.screeningPb.visibility = View.VISIBLE
+        binding.saveBtn.isEnabled = false
         binding.saveBtn.setOnClickListener {
             val answers = mutableListOf<ScreeningQuestionsModel>()
-            var successCount = 0
+            val successCount = answers.size
 
-            for (i in 0 until binding.eyeQuestionnaireLayout.childCount) {
-                val switch = binding.eyeQuestionnaireLayout.getChildAt(i) as SwitchMaterial
-                answers.add(ScreeningQuestionsModel(learner, switch.text.toString() , switch.isChecked))
+            val questionLayouts = listOf(
+                binding.eyeQuestionnaireLayout,
+                binding.earQuestionnaireLayout,
+                binding.throatQuestionnaireLayout
+            )
+
+            questionLayouts.forEach { layout ->
+                layout.forEach { childView ->
+                    if (childView is SwitchMaterial) {
+                        answers.add(ScreeningQuestionsModel(learner, childView.text.toString(), childView.isChecked))
+                    }
+                }
             }
 
-            for (i in 0 until binding.earQuestionnaireLayout.childCount) {
-                val switch = binding.earQuestionnaireLayout.getChildAt(i) as SwitchMaterial
-                answers.add(ScreeningQuestionsModel(learner, switch.text.toString() , switch.isChecked))
-            }
-
-            for (i in 0 until binding.throatQuestionnaireLayout.childCount) {
-                val switch = binding.throatQuestionnaireLayout.getChildAt(i) as SwitchMaterial
-                answers.add(ScreeningQuestionsModel(learner, switch.text.toString() , switch.isChecked))
-            }
-
-            for (answer in answers) {
-                wellnessMobileClinicRef.child(learner)
-                    .push()
-                    .setValue(answer)
+            val databaseReference = database.getReference("screeningQuestions").child(learner)
+            answers.forEach { answer ->
+                databaseReference.push().setValue(answer)
                     .addOnSuccessListener {
-                        successCount++
-                        if (successCount == answers.size) {
-                            Toast.makeText(this, "Successfully added learner screening", Toast.LENGTH_LONG).show()
-                            intent = Intent(this@AddScreeningActivity, LearnerProfileActivity::class.java)
-                            intent.putExtra("learner", learner)
-                            startActivity(intent)
-                            finish()
+                        if (successCount == answers.size - 1) {
+                            binding.screeningPb.visibility = View.GONE
+                            binding.saveBtn.isEnabled = true
+                            showSuccessMessageAndNavigate(learner)
                         }
                     }
                     .addOnFailureListener {
-                        Toast.makeText(this, "Something went wrong.", Toast.LENGTH_LONG).show()
+                        binding.screeningPb.visibility = View.GONE
+                        binding.saveBtn.isEnabled = true
+                        showMessage("Something went wrong.")
+                        Log.e("Screening Questions Save", "${it.message}")
                     }
             }
         }
+    }
 
+    private fun setupCancelButton(learner: String) {
         binding.cancelBtn.setOnClickListener {
-            intent = Intent(this, LearnerProfileActivity::class.java)
+            val intent = Intent(this, LearnerProfileActivity::class.java)
             intent.putExtra("learner", learner)
             startActivity(intent)
             finish()
         }
+    }
 
+    private fun showSuccessMessageAndNavigate(learner: String) {
+        showMessage("Successfully added learner screening")
+        val intent = Intent(this, LearnerProfileActivity::class.java)
+        intent.putExtra("learner", learner)
+        startActivity(intent)
+        finish()
+    }
+
+    private fun showMessage(message : String) {
+        Snackbar.make(binding.root,
+            message,
+            Snackbar.LENGTH_LONG).show()
     }
 }
 

@@ -45,7 +45,6 @@ class SignUpActivity : AppCompatActivity() {
         val email = binding.emailTb.editText?.text.toString().trim()
         val password = binding.passwordTb.editText?.text.toString().trim()
         val confirmPassword = binding.confirmPasswordTb.editText?.text.toString().trim()
-
         //Validating email and password.
         if (validateEmail(email) && validatePassword(password, confirmPassword)) {
             /*The signUpPb is a progress bar that acts as a "loading" icon that's being made visible.*/
@@ -72,10 +71,18 @@ class SignUpActivity : AppCompatActivity() {
     }
     //Displays an error if the email is empty.
     private fun validateEmail(email: String): Boolean {
-        return if (email.isEmpty()) {
+        val emailPattern = ("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$").toRegex()
+        val flag: Boolean
+        if (email.isEmpty()) {
             binding.emailTb.error = "Email cannot be empty"
-            false
-        } else true
+            flag = false
+        } else if(email.matches(emailPattern)){
+            binding.emailTb.error = "Invalid Email"
+            flag = false
+        } else{
+            flag = true
+        }
+        return flag
     }
     //Displays an error if the password and confirm password fields are empty or don't match.
     private fun validatePassword(password: String, confirmPassword: String): Boolean {

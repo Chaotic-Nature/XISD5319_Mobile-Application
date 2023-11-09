@@ -32,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Name: Cibrian Hofsta"
-                android:textColor="@color/my_app_primary_dark"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
 
             <TextView
@@ -42,7 +42,7 @@
                 android:layout_gravity="start"
                 android:layout_marginTop="5dp"
                 android:text="Age: 22"
-                android:textColor="@color/my_app_primary_dark"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
 
             <TextView
@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="ID number: 0101035298088"
-                android:textColor="@color/my_app_primary_dark"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
 
         </LinearLayout>

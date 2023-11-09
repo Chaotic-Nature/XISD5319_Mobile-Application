@@ -63,4 +63,10 @@
     <string name="create_an_account">Create an Account</string>
     <string name="sign_up">Sign Up</string>
     <string name="already_have_an_account">Already have an account?</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="save">Save</string>
+    <string name="learner_details">Learner Details</string>
+    <string name="id">ID</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
 </resources>

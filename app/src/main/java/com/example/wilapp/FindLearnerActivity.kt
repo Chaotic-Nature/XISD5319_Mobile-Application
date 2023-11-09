@@ -3,26 +3,25 @@ package com.example.wilapp
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wilapp.databinding.ActivityFindLearnerBinding
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 
 class FindLearnerActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityFindLearnerBinding
-    private val database = Firebase.database
-    private val learnerRef = database.getReference("learners")
-
+    private lateinit var database: FirebaseDatabase
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFindLearnerBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        database = FirebaseDatabase.getInstance()
         val saIdRegex = """^\d{13}$""".toRegex()
         // Hiding the results label TextView.
         binding.resultsLabelTv.visibility = View.GONE
@@ -42,7 +41,9 @@ class FindLearnerActivity : AppCompatActivity() {
     }
 
     private fun findLearner(inputID: String) {
-        learnerRef.addValueEventListener(object : ValueEventListener {
+        binding.findLearnerPb.visibility = View.VISIBLE
+        binding.searchBtn.isEnabled = false
+        database.getReference("learners").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val learnerList = mutableListOf<LearnerModel>()
 
@@ -57,7 +58,8 @@ class FindLearnerActivity : AppCompatActivity() {
                     binding.resultsLabelTv.text = "Results"
                     binding.resultsLabelTv.visibility = View.VISIBLE
                     val adapter = LearnerModelAdapter(learnerList)
-                    binding.learnerInfoRv.layoutManager = LinearLayoutManager(this@FindLearnerActivity)
+                    binding.learnerInfoRv.layoutManager =
+                        LinearLayoutManager(this@FindLearnerActivity)
                     binding.learnerInfoRv.adapter = adapter
 
                     adapter.setOnClickListener(object : LearnerModelAdapter.OnClickListener {
@@ -70,18 +72,24 @@ class FindLearnerActivity : AppCompatActivity() {
                             startActivity(intent)
                         }
                     })
+                    binding.findLearnerPb.visibility = View.GONE
+                    binding.searchBtn.isEnabled = true
                 } else {
                     binding.resultsLabelTv.visibility = View.VISIBLE
                     binding.resultsLabelTv.text = "No results"
-                    Toast.makeText(this@FindLearnerActivity,"Learner does not exist", Toast.LENGTH_LONG).show()
+                    Snackbar.make(
+                        binding.root,
+                        "Learner does not exist",
+                        Snackbar.LENGTH_LONG
+                    ).show()
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(
-                    this@FindLearnerActivity,
+                Snackbar.make(
+                    binding.root,
                     "Failed to read value. ${error.toException()}",
-                    Toast.LENGTH_LONG
+                    Snackbar.LENGTH_LONG
                 ).show()
             }
         })

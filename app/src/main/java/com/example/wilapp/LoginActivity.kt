@@ -22,6 +22,8 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         firebaseAuth = FirebaseAuth.getInstance()
+        val emailPattern = ("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$").toRegex()
+
 
         // Start the sign-up activity when the button is clicked.
         binding.signUpBtn.setOnClickListener {
@@ -37,7 +39,11 @@ class LoginActivity : AppCompatActivity() {
 
             if (email.isEmpty()) {
                 binding.emailTb.error = "Email cannot be empty"
-            } else {
+            }
+            else if (!email.matches(emailPattern)) {
+                binding.emailTb.error = "Invalid Email"
+            }
+            else{
                 sendPasswordResetEmail(email)
             }
         }
@@ -52,7 +58,11 @@ class LoginActivity : AppCompatActivity() {
 
             if (email.isEmpty()) {
                 binding.emailTb.error = "Email cannot be empty"
-            } else if (password.isEmpty()) {
+            }
+            else if(!email.matches(emailPattern)){
+                binding.emailTb.error = "Invalid Email"
+            }
+            else if (password.isEmpty()) {
                 binding.passwordTb.error = "Password cannot be empty"
             } else {
                 signInUser(email, password)

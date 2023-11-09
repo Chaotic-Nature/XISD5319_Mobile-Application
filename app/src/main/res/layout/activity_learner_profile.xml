@@ -1,192 +1,212 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/greenn"
-    android:fillViewport="true"
-    tools:context=".LearnerProfileActivity"
-    >
+    android:background="@drawable/green_background_img"
+    tools:context=".LearnerProfileActivity">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="20dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Learner Information"
-            android:textColor="@color/my_app_on_primary"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/my_app_on_primary" />
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/home_background"
-            android:backgroundTint="@color/my_app_on_primary"
             android:orientation="vertical"
-            android:padding="10dp">
+            android:padding="20dp">
 
             <TextView
-                android:id="@+id/nameTv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Cibrian Hofsta"
-                android:textColor="@color/my_app_primary_dark" />
+                android:text="Learner Information"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/white" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/blank_square_background"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/nameTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cibrian Hofsta"
+                    android:textColor="@color/green" />
+
+                <TextView
+                    android:id="@+id/ageTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="22"
+                    android:textColor="@color/green" />
+
+                <TextView
+                    android:id="@+id/sexTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="M"
+                    android:textColor="@color/green" />
+
+                <TextView
+                    android:id="@+id/idTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="0101035298088"
+                    android:textColor="@color/green" />
+
+                <TextView
+                    android:id="@+id/schoolTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Malibu High School"
+                    android:textColor="@color/green" />
+
+            </LinearLayout>
+
 
             <TextView
-                android:id="@+id/ageTv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="22"
-                android:textColor="@color/my_app_primary_dark" />
+                android:layout_marginTop="10dp"
+                android:text="Screening"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/white" />
 
             <TextView
-                android:id="@+id/sexTv"
+                android:id="@+id/noScreening_Tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="M"
-                android:textColor="@color/my_app_primary_dark" />
+                android:layout_marginTop="5dp"
+                android:text="No screening information"
+                android:textColor="@color/white" />
 
             <TextView
-                android:id="@+id/idTv"
+                android:id="@+id/screeningResultsTv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="0101035298088"
-                android:textColor="@color/my_app_primary_dark" />
+                android:layout_marginTop="5dp"
+                android:background="@drawable/blank_square_background"
+                android:padding="5dp"
+                android:textColor="@color/green" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <Button
+                    android:id="@+id/addScreeningBtn"
+                    style="@style/Widget.Material3.Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Add"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="10dp" />
+
+                <Button
+                    android:id="@+id/editScreeningBtn"
+                    style="@style/Widget.Material3.Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="Edit"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="10dp" />
+            </RelativeLayout>
 
             <TextView
-                android:id="@+id/schoolTv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Malibu High School"
-                android:textColor="@color/my_app_primary_dark" />
+                android:layout_marginTop="10dp"
+                android:text="Procedures"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/white" />
+
+            <TextView
+                android:id="@+id/noProcedureTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="No procedure information"
+                android:textColor="@color/white" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/procedureRv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <Button
+                    android:id="@+id/addProcedureBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Add" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/white" />
+
+            <Button
+                android:id="@+id/returnBtn"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:text="Return" />
         </LinearLayout>
 
+    </ScrollView>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Screening"
-            android:textColor="@color/my_app_on_primary"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/profilePb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/my_app_on_primary" />
-
-        <TextView
-            android:id="@+id/noScreening_Tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="No screening information"
-            android:textColor="@color/my_app_on_primary" />
-
-        <TextView
-            android:id="@+id/screeningResultsTv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/home_background"
-            android:padding="5dp"
-            android:textColor="@color/my_app_primary_dark" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
-
-            <Button
-                android:id="@+id/addScreeningBtn"
-                style="@style/Widget.Material3.Button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Add"
-                android:textColor="@color/my_app_on_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:cornerRadius="10dp" />
-
-            <Button
-                android:id="@+id/editScreeningBtn"
-                style="@style/Widget.Material3.Button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:text="Edit"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:cornerRadius="10dp" />
-        </RelativeLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Procedures"
-            android:textColor="@color/my_app_on_primary"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/my_app_on_primary" />
-
-        <TextView
-            android:id="@+id/noProcedureTv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="No procedure information"
-            android:textColor="@color/my_app_on_primary" />
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/procedureRv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
-
-            <Button
-                android:id="@+id/addProcedureBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Add" />
-
-        </RelativeLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/my_app_on_primary" />
-
-        <Button
-            android:id="@+id/returnBtn"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:text="Return" />
-    </LinearLayout>
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

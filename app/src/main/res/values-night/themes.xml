@@ -1,30 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Base application theme for dark mode (Material Design) -->
-    <style name="AppTheme.Dark" parent="Theme.MaterialComponents">
-        <!-- Primary branding color for the app in dark mode -->
-        <item name="colorPrimary">@color/my_app_primary</item>
+    <style name="AppTheme.Dark" parent="Theme.Material3.Dark.NoActionBar">
+        <!-- Primary branding color for the app -->
+        <item name="colorPrimary">@color/green</item>
+        <!-- Secondary color for the app -->
+        <item name="colorSecondary">#7CB342</item>
 
-        <!-- Darker variant of the primary color for dark mode -->
-        <item name="colorPrimaryDark">@color/my_app_primary_dark</item>
+        <!-- Text color for the primary background content -->
+        <item name="android:textColorPrimary">@color/green</item>
+        <!-- Background color for the app -->
+        <item name="android:windowBackground">@color/green</item>
 
-        <!-- Secondary color for the app in dark mode -->
-        <item name="colorSecondary">@color/my_app_secondary</item>
-
-        <!-- Error color for the app in dark mode -->
-        <item name="colorError">@color/my_app_error</item>
-
-        <!-- Text color for the primary background content in dark mode -->
-        <item name="android:textColorPrimary">#43A047</item>
-
-        <!-- Text color for the secondary background content in dark mode -->
-        <item name="android:textColorSecondary">#00897B</item>
-
-        <!-- Background color for the app in dark mode -->
-        <item name="android:windowBackground">@color/my_app_surface</item>
-
-        <!-- Background color for the action bar in dark mode -->
-        <item name="android:colorBackground">@color/my_app_primary</item>
-
+        <!-- Background color for the action bar -->
+        <item name="android:colorBackground">@color/green</item>
     </style>
 </resources>

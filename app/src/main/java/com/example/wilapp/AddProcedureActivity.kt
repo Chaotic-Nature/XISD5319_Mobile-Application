@@ -5,16 +5,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.wilapp.databinding.ActivityAddProcedureBinding
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.database.FirebaseDatabase
 import java.util.Calendar
 
 class AddProcedureActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddProcedureBinding
-    private val database = Firebase.database
+    private lateinit var database : FirebaseDatabase
     private var selectedDate = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,19 +21,13 @@ class AddProcedureActivity : AppCompatActivity() {
         binding = ActivityAddProcedureBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val procedureReference = database.getReference("procedures")
         val learner = intent.extras?.getString("learner").toString()
+        database = FirebaseDatabase.getInstance()
+
         binding.dateDisplayTv.visibility = View.GONE
 
-        binding.procedureCategorySpinner.adapter = populateSpinner()
-
-        val arrayAdapter = ArrayAdapter.createFromResource(
-            this,
-            R.array.doctors,
-            android.R.layout.simple_spinner_item
-        )
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.procedurePerformerSpinner.adapter = arrayAdapter
+        binding.procedureCategoryAcv.setAdapter(populateDropDown(R.array.procedureCategories))
+        binding.procedurePerformerAcv.setAdapter(populateDropDown(R.array.doctors))
 
         binding.procedureDateBtn.setOnClickListener {
             showDatePicker()
@@ -42,37 +35,44 @@ class AddProcedureActivity : AppCompatActivity() {
 
 
         binding.saveBtn.setOnClickListener {
-            val category = binding.procedureCategorySpinner.selectedItem.toString()
+            binding.addProcedurePb.visibility = View.VISIBLE
+            binding.saveBtn.isEnabled = false
+            val category = binding.procedureCategory.editText?.text.toString()
             val description = binding.procedureDescriptionTb.editText?.text.toString().trim()
             val date = selectedDate
-            val procedurePerformer = binding.procedurePerformerSpinner.selectedItem.toString()
+            val procedurePerformer = binding.procedurePerformer.editText?.text.toString().trim()
 
             if (category.isNotEmpty() && description.isNotEmpty() && date.isNotEmpty() && procedurePerformer.isNotEmpty()) {
-                val procedureId = procedureReference.child(learner)
+                val procedureId = database.getReference("procedures").child(learner)
                     .push()
                     .key
                 if (procedureId != null) {
-                    procedureReference.child(learner)
+                    database.getReference("procedures").child(learner)
                         .child(procedureId)
                         .setValue(ProcedureModel(procedureId, category, description, procedurePerformer,date))
                         .addOnSuccessListener {
-                            Toast.makeText(this, "Successfully added procedure",
-                                Toast.LENGTH_LONG).show()
-                            intent =Intent(this@AddProcedureActivity, LearnerProfileActivity::class.java)
+                            binding.addProcedurePb.visibility = View.GONE
+                            binding.saveBtn.isEnabled = true
+                            Snackbar.make(binding.root, "Successfully added procedure",
+                                Snackbar.LENGTH_LONG).show()
+                            val intent =Intent(this@AddProcedureActivity, LearnerProfileActivity::class.java)
                             intent.putExtra("learner", learner)
+                            intent.putExtra("procedureId", procedureId)
                             startActivity(intent)
                             finish()
                         }
                         .addOnFailureListener {
-                            Toast.makeText(this, "Something went wrong.", Toast.LENGTH_LONG).show()
+                            binding.addProcedurePb.visibility = View.GONE
+                            binding.saveBtn.isEnabled = true
+                            Snackbar.make(binding.root, "Failed to add procedure",
+                                Snackbar.LENGTH_LONG).show()
                         }
                 }
             } else {
-                Toast.makeText(
-                    this,
-                    "Ensure that all fields are not empty.",
-                    Toast.LENGTH_LONG
-                ).show()
+                binding.addProcedurePb.visibility = View.GONE
+                binding.saveBtn.isEnabled = true
+                Snackbar.make(binding.root,"Ensure that all fields are not empty.",
+                    Snackbar.LENGTH_LONG).show()
             }
         }
 
@@ -81,14 +81,12 @@ class AddProcedureActivity : AppCompatActivity() {
         }
     }
 
-    private fun populateSpinner(): ArrayAdapter<CharSequence> {
-        val arrayAdapter = ArrayAdapter.createFromResource(
-            this,
-            R.array.procedureCategories,
-            android.R.layout.simple_spinner_item
+    private fun populateDropDown(stringArrayId: Int): ArrayAdapter<String> {
+        return ArrayAdapter(
+            this@AddProcedureActivity,
+            android.R.layout.simple_dropdown_item_1line,
+            resources.getStringArray(stringArrayId)
         )
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        return arrayAdapter
     }
 
     private fun showDatePicker() {

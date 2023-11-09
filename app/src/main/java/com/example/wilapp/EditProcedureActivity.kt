@@ -3,22 +3,21 @@ package com.example.wilapp
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.wilapp.databinding.ActivityEditProcedureBinding
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 import java.util.Calendar
 
 class EditProcedureActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEditProcedureBinding
-    private val database = Firebase.database
+    private lateinit var database : FirebaseDatabase
     private var selectedDate = ""
     private var learnerId = ""
     private var  procedureId = ""
@@ -29,40 +28,45 @@ class EditProcedureActivity : AppCompatActivity() {
         setContentView(binding.root)
         learnerId = intent.getStringExtra("learnerId") ?: ""
         procedureId = intent.getStringExtra("procedureId") ?: ""
-        var dataRef = database.getReference("procedures/$learnerId")
 
-        binding.procedureCategorySpinner.adapter = populateSpinner()
+        database = FirebaseDatabase.getInstance()
+
+        binding.procedureCategoryAcv.setAdapter(populateDropDown(R.array.procedureCategories))
+        binding.procedurePerformerAcv.setAdapter(populateDropDown(R.array.doctors))
+
         retrieveData()
 
         binding.saveBtn.setOnClickListener {
-            val procedure = binding.procedureCategorySpinner.selectedItem.toString()
+            binding.editProcedurePb.visibility = View.VISIBLE
+            binding.saveBtn.isEnabled = false
+            val procedure = binding.procedureCategory.editText?.text.toString()
             val description = binding.procedureDescriptionTb.editText?.text.toString()
-            val performer = binding.procedurePerformerTb.editText?.text.toString()
+            val performer = binding.procedurePerformer.editText?.text.toString()
             val date = selectedDate
 
             if (procedure.isNotEmpty() && description.isNotEmpty() && date.isNotEmpty() && performer.isNotEmpty()) {
                 deleteData(procedureId)
 
-                dataRef
+                database.getReference("procedures/$learnerId")
                     .push()
-                    .setValue(ProcedureModel("", procedure, description, performer,date))
+                    .setValue(ProcedureModel(procedureId, procedure, description, performer,date))
                     .addOnSuccessListener {
-                        Toast.makeText(this, "Successfully edited procedure",
-                            Toast.LENGTH_LONG).show()
+                        binding.editProcedurePb.visibility = View.GONE
+                        binding.saveBtn.isEnabled = true
+                        showMessage("Successfully edited procedure")
                         intent =Intent(this@EditProcedureActivity, LearnerProfileActivity::class.java)
                         intent.putExtra("learner", learnerId)
                         //startActivity(intent)
                         finish()
                     }
                     .addOnFailureListener {
-                        Toast.makeText(this, "Something went wrong.", Toast.LENGTH_LONG).show()
+                        binding.editProcedurePb.visibility = View.GONE
+                        binding.saveBtn.isEnabled = true
+                        showMessage("Failed to add procedure")
+                        Log.e("EDIT PROCEDURE", "Failed to add procedure. ${it.message}")
                     }
             } else {
-                Toast.makeText(
-                    this,
-                    "Ensure that all fields are not empty.",
-                    Toast.LENGTH_LONG
-                ).show()
+                showMessage("Ensure that all fields are not empty")
             }
         }
 
@@ -76,52 +80,56 @@ class EditProcedureActivity : AppCompatActivity() {
     }
 
     private fun retrieveData() {
-        val dataRef = database.getReference("procedures/$learnerId")
-
-        dataRef.orderByChild(procedureId)
+        binding.editProcedurePb.visibility = View.VISIBLE
+        binding.saveBtn.isEnabled = false
+        database.
+        getReference("procedures/$learnerId").orderByChild(procedureId)
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    binding.editProcedurePb.visibility = View.GONE
+                    binding.saveBtn.isEnabled = true
                     if (dataSnapshot.exists()) {
                         for (procedureSnapshot in dataSnapshot.children) {
                             val procedure: ProcedureModel? = procedureSnapshot.getValue(ProcedureModel::class.java)
                             if (procedure != null) {
+
                                 binding.procedureDescriptionTb.editText?.setText(procedure.description)
-                                binding.procedurePerformerTb.editText?.setText(procedure.procedurePerformer)
+                                binding.procedurePerformer.editText?.setText(procedure.procedurePerformer)
                                 selectedDate = procedure.datePerformed
                             }
                         }
                     } else {
-                        Toast.makeText(this@EditProcedureActivity,
-                            "No procedure document found", Toast.LENGTH_LONG).show()
+                        showMessage("No procedure found")
                     }
                 }
-
                 override fun onCancelled(databaseError: DatabaseError) {
-                    Toast.makeText(this@EditProcedureActivity,
-                        "${databaseError.message}", Toast.LENGTH_LONG).show()
+                    binding.editProcedurePb.visibility = View.GONE
+                    binding.saveBtn.isEnabled = true
+                    showMessage(databaseError.message)
+                    Log.e("EDIT PROCEDURE", "Database error. ${databaseError.message}")
                 }
             })
     }
-    private fun populateSpinner(): ArrayAdapter<CharSequence> {
-        val arrayAdapter = ArrayAdapter.createFromResource(
+    private fun populateDropDown(stringArrayId: Int): ArrayAdapter<String> {
+        return ArrayAdapter(
             this@EditProcedureActivity,
-            R.array.procedureCategories,
-            android.R.layout.simple_spinner_item
+            android.R.layout.simple_dropdown_item_1line,
+            resources.getStringArray(stringArrayId)
         )
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        return arrayAdapter
     }
 
     private fun deleteData(data: String) {
-        val dataRef = database.getReference("procedures/$learnerId/$data")
-
-        dataRef.removeValue()
+        database.getReference("procedures/$learnerId/$data").removeValue()
             .addOnSuccessListener {
-                Toast.makeText(this@EditProcedureActivity, "Data deleted successfully", Toast.LENGTH_SHORT).show()
+                Log.i("EDIT PROCEDURE", "Successfully deleted old procedure")
             }
             .addOnFailureListener {
-                Toast.makeText(this@EditProcedureActivity, "Failed to delete data", Toast.LENGTH_SHORT).show()
+                Log.e("EDIT PROCEDURE", "Failed to delete data. ${it.message}")
             }
+    }
+
+    private fun showMessage(message : String){
+        Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG).show()
     }
 
     private fun showDatePicker() {

@@ -90,7 +90,7 @@ class EditScreeningActivity : AppCompatActivity() {
         for (answer in answers) {
             val questionTextView = TextView(this)
             questionTextView.text = answer.question
-            questionTextView.setTextColor(ContextCompat.getColor(this, R.color.my_app_primary))
+            questionTextView.setTextColor(ContextCompat.getColor(this, R.color.green))
 
 
             val switch = SwitchMaterial(this)

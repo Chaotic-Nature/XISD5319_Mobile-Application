@@ -1,33 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Primary color for your app -->
-    <color name="my_app_primary">#2E7D32</color>
-
+    <color name="green">#2E7D32</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="grey">#5A6E5B</color>
     <color name="light_green">#8BFF90</color>
-    <!-- Darker variant of the primary color -->
-    <color name="my_app_primary_dark">#1B5E20</color>
+    <color name="light_red">#D32F2F</color>
 
-    <!-- Secondary color for your app -->
-    <color name="my_app_secondary">#03DAC6</color>
-
-    <!-- Error color for your app -->
-    <color name="my_app_error">#B00020</color>
-
-    <!-- Text color for the primary background content -->
-    <color name="my_app_on_primary">@android:color/white</color>
-
-    <!-- Text color for the secondary background content -->
-    <color name="my_app_on_secondary">@android:color/white</color>
-
-    <!-- Text color for the primary background -->
-    <color name="my_app_on_background">@android:color/white</color>
-
-    <!-- Text color for the secondary background -->
-    <color name="my_app_on_surface">@android:color/white</color>
-
-    <!-- Color for disabled elements -->
-    <color name="my_app_disabled">#727272</color>
-
-    <!--Color for night mode-->
-    <color name="my_app_surface">#292929</color>
 </resources>

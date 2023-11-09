@@ -24,7 +24,7 @@ class HomeActivity : AppCompatActivity() {
             startActivity(intent)
         }
         binding.logoutBtn.setOnClickListener {
-            val intent = Intent(this, Login::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }
