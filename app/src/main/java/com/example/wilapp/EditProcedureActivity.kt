@@ -39,31 +39,29 @@ class EditProcedureActivity : AppCompatActivity() {
         binding.saveBtn.setOnClickListener {
             binding.editProcedurePb.visibility = View.VISIBLE
             binding.saveBtn.isEnabled = false
+
             val procedure = binding.procedureCategory.editText?.text.toString()
             val description = binding.procedureDescriptionTb.editText?.text.toString()
             val performer = binding.procedurePerformer.editText?.text.toString()
             val date = selectedDate
 
             if (procedure.isNotEmpty() && description.isNotEmpty() && date.isNotEmpty() && performer.isNotEmpty()) {
-                deleteData(procedureId)
+                deleteData(procedureId) // Delete old procedure
 
-                database.getReference("procedures/$learnerId")
-                    .push()
-                    .setValue(ProcedureModel(procedureId, procedure, description, performer,date))
+                val newProcedureRef = database.getReference("procedures/$learnerId").push()
+                newProcedureRef.setValue(ProcedureModel(procedureId, procedure, description, performer, date))
                     .addOnSuccessListener {
                         binding.editProcedurePb.visibility = View.GONE
                         binding.saveBtn.isEnabled = true
                         showMessage("Successfully edited procedure")
-                        intent =Intent(this@EditProcedureActivity, LearnerProfileActivity::class.java)
+                        val intent = Intent(this@EditProcedureActivity, LearnerProfileActivity::class.java)
                         intent.putExtra("learner", learnerId)
-                        //startActivity(intent)
-                        finish()
+                        startActivity(intent) // Start a new activity or finish() as needed
                     }
                     .addOnFailureListener {
                         binding.editProcedurePb.visibility = View.GONE
                         binding.saveBtn.isEnabled = true
-                        showMessage("Failed to add procedure")
-                        Log.e("EDIT PROCEDURE", "Failed to add procedure. ${it.message}")
+                        showMessage("Failed to edit procedure: ${it.message}")
                     }
             } else {
                 showMessage("Ensure that all fields are not empty")
@@ -83,7 +81,7 @@ class EditProcedureActivity : AppCompatActivity() {
         binding.editProcedurePb.visibility = View.VISIBLE
         binding.saveBtn.isEnabled = false
         database.
-        getReference("procedures/$learnerId").orderByChild(procedureId)
+        getReference("procedures").child(learnerId).orderByChild(procedureId)
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     binding.editProcedurePb.visibility = View.GONE

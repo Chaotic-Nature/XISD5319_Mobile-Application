@@ -25,31 +25,12 @@ class AddScreeningActivity : AppCompatActivity() {
         database = FirebaseDatabase.getInstance()
 
         displayQuestions()
-        setupSaveButton(learner)
-        setupCancelButton(learner)
-    }
 
-    private fun displayQuestions() {
-        addQuestionsToLayout(R.array.eyeScreeningQuestions, binding.eyeQuestionnaireLayout)
-        addQuestionsToLayout(R.array.earScreeningQuestions, binding.earQuestionnaireLayout)
-        addQuestionsToLayout(R.array.throatScreeningQuestions, binding.throatQuestionnaireLayout)
-    }
-
-    private fun addQuestionsToLayout(questionArrayId: Int, layout: LinearLayout) {
-        resources.getStringArray(questionArrayId).forEach { questionText ->
-            val switch = SwitchMaterial(this)
-            val question = "Question: $questionText"
-            switch.text = question
-            layout.addView(switch)
-        }
-    }
-
-    private fun setupSaveButton(learner: String) {
-        binding.screeningPb.visibility = View.VISIBLE
-        binding.saveBtn.isEnabled = false
         binding.saveBtn.setOnClickListener {
+            binding.screeningPb.visibility = View.VISIBLE
+            binding.saveBtn.isEnabled = false
             val answers = mutableListOf<ScreeningQuestionsModel>()
-            val successCount = answers.size
+            answers.size
 
             val questionLayouts = listOf(
                 binding.eyeQuestionnaireLayout,
@@ -69,11 +50,9 @@ class AddScreeningActivity : AppCompatActivity() {
             answers.forEach { answer ->
                 databaseReference.push().setValue(answer)
                     .addOnSuccessListener {
-                        if (successCount == answers.size - 1) {
                             binding.screeningPb.visibility = View.GONE
                             binding.saveBtn.isEnabled = true
                             showSuccessMessageAndNavigate(learner)
-                        }
                     }
                     .addOnFailureListener {
                         binding.screeningPb.visibility = View.GONE
@@ -83,9 +62,7 @@ class AddScreeningActivity : AppCompatActivity() {
                     }
             }
         }
-    }
 
-    private fun setupCancelButton(learner: String) {
         binding.cancelBtn.setOnClickListener {
             val intent = Intent(this, LearnerProfileActivity::class.java)
             intent.putExtra("learner", learner)
@@ -94,9 +71,24 @@ class AddScreeningActivity : AppCompatActivity() {
         }
     }
 
+    private fun displayQuestions() {
+        addQuestionsToLayout(R.array.eyeScreeningQuestions, binding.eyeQuestionnaireLayout)
+        addQuestionsToLayout(R.array.earScreeningQuestions, binding.earQuestionnaireLayout)
+        addQuestionsToLayout(R.array.throatScreeningQuestions, binding.throatQuestionnaireLayout)
+    }
+
+    private fun addQuestionsToLayout(questionArrayId: Int, layout: LinearLayout) {
+        resources.getStringArray(questionArrayId).forEach { questionText ->
+            val switch = SwitchMaterial(this)
+            val question = "Question: $questionText"
+            switch.text = question
+            layout.addView(switch)
+        }
+    }
+
     private fun showSuccessMessageAndNavigate(learner: String) {
         showMessage("Successfully added learner screening")
-        val intent = Intent(this, LearnerProfileActivity::class.java)
+        val intent = Intent(this@AddScreeningActivity, LearnerProfileActivity::class.java)
         intent.putExtra("learner", learner)
         startActivity(intent)
         finish()

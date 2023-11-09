@@ -1,6 +1,7 @@
 package com.example.wilapp
 
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
@@ -32,52 +33,54 @@ class AddLearnerActivity : AppCompatActivity() {
         binding.schoolsDropDownAcv.setAdapter(adapter)
 
         binding.saveBtn.setOnClickListener {
-            /*Setting all input fields error indicators to null.*/
+            // Clear existing error messages
             binding.idTextField.error = null
             binding.nameTextField.error = null
             binding.surnameTextField.error = null
 
-            /*Getting user input*/
+            // Get user input
             val id = binding.idTextField.editText?.text.toString().trim()
             val name = binding.nameTextField.editText?.text.toString().trim()
             val surname = binding.surnameTextField.editText?.text.toString().trim()
             val school = binding.schoolsDropDown.editText?.text.toString()
-            val age = calculateAgeFromIdNumber(id)
-            val sex = determineSexFromIdNumber(id)
-            /*Regular expression is used to validate the ID as a S.A ID*/
-            val saIdRegex = """^\d{13}$""".toRegex()
 
-            /*Displaying error messages to the relevant textBox*/
-            if (name.isEmpty()) {
-                binding.idTextField.error = "Please enter a name"
-            } else if (surname.isEmpty()) {
-                binding.idTextField.error = "Please enter a surname"
-            } else if (id.isEmpty()) {
-                binding.idTextField.error = "Please enter an ID number"
-            } else if (!id.matches(saIdRegex)) {
-                binding.idTextField.error = "Must be valid ID number"
-            }
-            else {
-                binding.addLearnerPb.visibility = View.VISIBLE //Makes loading icon visible.
-                binding.saveBtn.isEnabled = false//Disables save button.
+            val validationMessage = validateInput(id, name, surname)
+            if (validationMessage != null) {
+                showMessage(validationMessage)
+            } else {
+                // Set loading icon and disable the save button
+                setSavingState(true)
 
-                if (learnerExists(id)){
-                    showMessage("Learner already exists")
-                }else{
-                    addLearner(LearnerModel(id,name,surname,age.toInt(),sex,school))
+                // Check if learner exists
+                checkIfLearnerExists(id) { learnerExists ->
+                    if (learnerExists) {
+                        showMessage("Learner already exists")
+                    } else {
+                        // Create and save the learner
+                        val age = calculateAgeFromIdNumber(id)
+                        val sex = determineSexFromIdNumber(id)
+                        addLearner(LearnerModel(id, name, surname, age.toInt(), sex, school))
+                    }
+                    // Clear loading icon and enable the save button
+                    setSavingState(false)
                 }
             }
         }
     }
 
     private fun addLearner(learner : LearnerModel){
+        binding.addLearnerPb.visibility = View.VISIBLE //Makes loading icon visible.
+        binding.saveBtn.isEnabled = false//Disables save button.
+
         database.getReference("learners").child(learner.id)
             .setValue(learner)
             .addOnSuccessListener {
                 binding.addLearnerPb.visibility = View.GONE
                 binding.saveBtn.isEnabled = true
                 showMessage("Successfully added learner")
-                finish()
+                Handler().postDelayed({
+                    finish()
+                }, 2000)
             }
             .addOnFailureListener { e ->
                 binding.addLearnerPb.visibility = View.GONE
@@ -87,32 +90,48 @@ class AddLearnerActivity : AppCompatActivity() {
             }
     }
 
-    private fun learnerExists(learnerId  :String) : Boolean{
-        var learnerExists = false
-        database.getReference("learners").addValueEventListener(object :
-            ValueEventListener {
+    private fun setSavingState(isSaving: Boolean) {
+        binding.addLearnerPb.visibility = if (isSaving) View.VISIBLE else View.GONE
+        binding.saveBtn.isEnabled = !isSaving
+    }
+
+    private fun validateInput(id: String, name: String, surname: String): String? {
+        if (name.isEmpty()) {
+            return "Please enter a name"
+        }
+        if (surname.isEmpty()) {
+            return "Please enter a surname"
+        }
+        if (id.isEmpty()) {
+            return "Please enter an ID number"
+        }
+        val saIdRegex = """^\d{13}$""".toRegex()
+        if (!id.matches(saIdRegex)) {
+            return "Must be a valid ID number"
+        }
+        return null
+    }
+
+    private fun checkIfLearnerExists(learnerId: String, callback: (Boolean) -> Unit) {
+        database.getReference("learners").addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                var learnerExists = false
                 for (pulledLearner in snapshot.children) {
                     val learner: LearnerModel? = pulledLearner.getValue(LearnerModel::class.java)
-
-                    if (learner == null && pulledLearner.key != learnerId) {
-                        learnerExists = false
-                    }
-                    else{
-                        learnerExists = false
+                    if (learner != null && pulledLearner.key == learnerId) {
+                        learnerExists = true
+                        break
                     }
                 }
+                callback(learnerExists)
             }
 
             override fun onCancelled(error: DatabaseError) {
-                learnerExists = true
                 showMessage("Something went wrong")
                 Log.e("ADD LEARNER ACTIVITY", "Something went wrong: ${error.message}")
+                callback(true) // Treat as an error by default
             }
         })
-        binding.addLearnerPb.visibility = View.GONE
-        binding.saveBtn.isEnabled = true
-        return learnerExists
     }
 
     /*This code determines the users sex based on their id number*/

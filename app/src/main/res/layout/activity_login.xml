@@ -126,7 +126,7 @@
         android:id="@+id/loginPb"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:background="#B2B2B2"
+        android:background="@color/white"
         android:indeterminate="true"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"

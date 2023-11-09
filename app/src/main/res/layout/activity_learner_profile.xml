@@ -177,7 +177,9 @@
                     android:id="@+id/addProcedureBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Add" />
+                    android:text="Add"
+                    android:textStyle="bold"
+                    app:cornerRadius="10dp" />
 
             </RelativeLayout>
 
@@ -193,7 +195,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
-                android:text="Return" />
+                android:text="Return"
+                app:cornerRadius="10dp" />
         </LinearLayout>
 
     </ScrollView>

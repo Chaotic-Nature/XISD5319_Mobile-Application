@@ -2,13 +2,15 @@ package com.example.wilapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.widget.LinearLayout
-import com.google.android.material.switchmaterial.SwitchMaterial
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.wilapp.databinding.ActivityEditScreeningBinding
+import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -17,7 +19,7 @@ import com.google.firebase.database.ValueEventListener
 
 class EditScreeningActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEditScreeningBinding
-    private val database = FirebaseDatabase.getInstance()
+    private lateinit var database: FirebaseDatabase
     private lateinit var learner: String
     private val answers = mutableListOf<ScreeningQuestionsModel>()
 
@@ -27,15 +29,15 @@ class EditScreeningActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         learner = intent.getStringExtra("learner") ?: ""
+        database = FirebaseDatabase.getInstance()
 
-        val questionAnswersRef = database.reference.child("screeningQuestions").child(learner)
+        loadAnswersFromFirebase(database.reference.child("screeningQuestions").child(learner))
 
         binding.saveBtn.setOnClickListener {
-            saveEditedAnswers(questionAnswersRef)
-            intent = Intent(this, LearnerProfileActivity::class.java)
-            intent.putExtra("learner", learner)
-            startActivity(intent)
-            finish()
+            binding.editScrPb.visibility = View.VISIBLE
+            binding.saveBtn.isEnabled = false
+
+            saveEditedAnswers(database.reference.child("screeningQuestions").child(learner))
         }
         binding.cancelBtn.setOnClickListener {
             intent = Intent(this, LearnerProfileActivity::class.java)
@@ -43,8 +45,6 @@ class EditScreeningActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-
-        loadAnswersFromFirebase(questionAnswersRef)
     }
 
     private fun saveEditedAnswers(questionAnswersRef: DatabaseReference) {
@@ -53,12 +53,30 @@ class EditScreeningActivity : AppCompatActivity() {
             answers[i].answer = switch.isChecked
         }
 
-        // Now, you can update the answers directly without relying on the 'id' property
         questionAnswersRef.setValue(answers)
+            .addOnSuccessListener {
+                binding.editScrPb.visibility = View.GONE
+                binding.saveBtn.isEnabled = true
+                Snackbar.make(
+                    binding.root, "Answers saved successfully",
+                    Snackbar.LENGTH_SHORT
+                ).show()
+                intent = Intent(this, LearnerProfileActivity::class.java)
+                intent.putExtra("learner", learner)
+                startActivity(intent)
+                finish()
 
-        // Provide feedback to the user
-        Toast.makeText(this, "Answers saved successfully", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener { e ->
+                binding.editScrPb.visibility = View.GONE
+                binding.saveBtn.isEnabled = true
+                Snackbar.make(
+                    binding.root, "Failed to save answers: ${e.message}",
+                    Snackbar.LENGTH_SHORT
+                ).show()
+            }
     }
+
 
     private fun loadAnswersFromFirebase(questionAnswersRef: DatabaseReference) {
         // Retrieve answers from Firebase for the specific learner
@@ -78,7 +96,12 @@ class EditScreeningActivity : AppCompatActivity() {
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                // Handle error
+                Snackbar.make(
+                    binding.root,
+                    "Could not retrieve learners screening answers from the database",
+                    Snackbar.LENGTH_SHORT
+                ).show()
+                Log.e("EDIT SCREENING", "Error: ${databaseError.message}")
             }
         })
     }
@@ -89,11 +112,10 @@ class EditScreeningActivity : AppCompatActivity() {
         // Loop through answers and create UI elements for editing
         for (answer in answers) {
             val questionTextView = TextView(this)
+            val switch = SwitchMaterial(this)
+
             questionTextView.text = answer.question
             questionTextView.setTextColor(ContextCompat.getColor(this, R.color.green))
-
-
-            val switch = SwitchMaterial(this)
             switch.isChecked = answer.answer
 
             editScreeningLayout.addView(questionTextView)

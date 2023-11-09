@@ -104,15 +104,17 @@
                     android:layout_gravity="center_horizontal"
                     android:backgroundTint="@color/light_red"
                     android:backgroundTintMode="src_over"
-                    android:text="Cancel" />
+                    android:text="Cancel"
+                    app:cornerRadius="10dp" />
 
                 <Button
                     android:id="@+id/save_btn"
                     android:layout_width="120dp"
-                    android:layout_marginStart="50dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="Save" />
+                    android:layout_marginStart="50dp"
+                    android:text="Save"
+                    app:cornerRadius="10dp" />
 
 
 
@@ -127,6 +129,7 @@
         android:id="@+id/screeningPb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:indeterminate="true"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"

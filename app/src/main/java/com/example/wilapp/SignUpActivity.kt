@@ -36,6 +36,9 @@ class SignUpActivity : AppCompatActivity() {
     /*Validates user sign up credentials and creates an account for them if their information
         is correct*/
     private fun signUpUser() {
+        /*The signUpPb is a progress bar that acts as a "loading" icon that's being made visible.*/
+        binding.signUpPb.visibility = View.VISIBLE
+        binding.signUpBtn.isEnabled = false
         //Setting all textBox errors to null everytime the button is clicked.
         binding.emailTb.error = null
         binding.passwordTb.error = null
@@ -47,9 +50,7 @@ class SignUpActivity : AppCompatActivity() {
         val confirmPassword = binding.confirmPasswordTb.editText?.text.toString().trim()
         //Validating email and password.
         if (validateEmail(email) && validatePassword(password, confirmPassword)) {
-            /*The signUpPb is a progress bar that acts as a "loading" icon that's being made visible.*/
-            binding.signUpPb.visibility = View.VISIBLE
-            binding.signUpBtn.isEnabled = false
+
             //Firebase built in async function that creates a user.
             firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
                 if (it.isSuccessful) {
@@ -76,7 +77,7 @@ class SignUpActivity : AppCompatActivity() {
         if (email.isEmpty()) {
             binding.emailTb.error = "Email cannot be empty"
             flag = false
-        } else if(email.matches(emailPattern)){
+        } else if(!email.matches(emailPattern)){
             binding.emailTb.error = "Invalid Email"
             flag = false
         } else{
@@ -106,7 +107,7 @@ class SignUpActivity : AppCompatActivity() {
     private fun handleSignUpError(exception: Exception?) {
         val errorMessage = when (exception) {
             is FirebaseAuthWeakPasswordException -> "Password must be 6 or more characters"
-            is FirebaseAuthUserCollisionException -> "Email already exists"
+            is FirebaseAuthUserCollisionException -> "Email is already in use"
             is FirebaseAuthEmailException -> "Invalid email address"
             else -> exception?.message
         }

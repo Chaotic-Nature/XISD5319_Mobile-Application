@@ -67,7 +67,8 @@
             android:elevation="5dp"
             android:text="Search"
             android:textColor="@color/white"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:cornerRadius="10dp" />
 
         <TextView
             android:id="@+id/resultsLabel_tv"
@@ -90,7 +91,7 @@
         android:id="@+id/findLearnerPb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#B2B2B2"
+        android:background="@color/white"
         android:indeterminate="true"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
