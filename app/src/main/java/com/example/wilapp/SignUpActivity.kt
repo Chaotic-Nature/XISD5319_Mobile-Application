@@ -3,6 +3,7 @@ package com.example.wilapp
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.wilapp.databinding.ActivitySignUpBinding
 import com.google.android.material.snackbar.Snackbar
@@ -57,10 +58,12 @@ class SignUpActivity : AppCompatActivity() {
                     //Hiding the progress bar and going to the sign up activity.
                     binding.signUpPb.visibility = View.GONE
                     binding.signUpBtn.isEnabled = true
+                    sendVerificationEmail()
                     val intent = Intent(this, LoginActivity::class.java)
                     showMessage("Successfully created account")
                     startActivity(intent)
                     finish()
+
                 } else {
                     //Hiding the progress bar and handling an exception.
                     binding.signUpPb.visibility = View.GONE
@@ -69,6 +72,18 @@ class SignUpActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+    private fun sendVerificationEmail() {
+        val user = firebaseAuth.currentUser
+        user?.sendEmailVerification()
+            ?.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(baseContext, "Verification email sent to ${user.email}", Toast.LENGTH_SHORT).show()
+                    // Redirect the user to a screen informing them to check their email for verification
+                } else {
+                    Toast.makeText(baseContext, "Failed to send verification email.", Toast.LENGTH_SHORT).show()
+                }
+            }
     }
     //Displays an error if the email is empty.
     private fun validateEmail(email: String): Boolean {

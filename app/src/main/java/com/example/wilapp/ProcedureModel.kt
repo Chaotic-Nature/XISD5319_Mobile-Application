@@ -7,7 +7,7 @@ class ProcedureModel() {
      var procedurePerformer : String = ""
      var datePerformed : String = ""
 
-    constructor(id : String, category : String, description: String, procedurePerformer : String, datePerformed : String) : this(){
+    constructor(id: String, category: String, description: String, procedurePerformer: String, datePerformed: String) : this(){
         this.id = id
         this.category = category
         this.description = description

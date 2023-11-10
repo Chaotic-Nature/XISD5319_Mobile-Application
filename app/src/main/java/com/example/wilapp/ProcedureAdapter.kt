@@ -27,7 +27,7 @@ class ProcedureAdapter (private val mList: List<ProcedureModel>) :
         // sets the text to the textview from our itemHolder class
         holder.procedure.text = procedure.category
         holder.description.text = procedure.description
-        holder.datePerformed.text = procedure.datePerformed
+        holder.datePerformed.text = procedure.datePerformed.toString()
         holder.procedurePerformer.text = procedure.procedurePerformer
 
 

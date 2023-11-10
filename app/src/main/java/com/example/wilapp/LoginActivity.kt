@@ -101,11 +101,25 @@ class LoginActivity : AppCompatActivity() {
         firebaseAuth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    binding.loginPb.visibility = View.GONE
-                    binding.loginBtn.isEnabled = true
-                    val intent = Intent(this, HomeActivity::class.java)
-                    startActivity(intent)
-                    finish()
+                    val user = firebaseAuth.currentUser
+                    if (user != null && user.isEmailVerified) {
+                        // User is signed in and email is verified
+                        binding.loginPb.visibility = View.GONE
+                        binding.loginBtn.isEnabled = true
+                        val intent = Intent(this, HomeActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        // Email is not verified, show a message and sign out
+                        binding.loginPb.visibility = View.GONE
+                        binding.loginBtn.isEnabled = true
+                        FirebaseAuth.getInstance().signOut()
+                        Snackbar.make(
+                            binding.root,
+                            "Please verify your email address before logging in.",
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                    }
                 } else {
                     binding.loginPb.visibility = View.GONE
                     binding.loginBtn.isEnabled = true
