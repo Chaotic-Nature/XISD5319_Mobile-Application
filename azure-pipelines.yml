@@ -16,10 +16,12 @@ jobs:
       publishJUnitResults: true
       tasks: 'assembleDebug'
 
+  - script: |
+      cat gradle/wrapper/gradle-wrapper.properties
+    displayName: 'Print Gradle Wrapper Properties'
 
   - task: PublishBuildArtifacts@1
     inputs:
       pathtoPublish: '$(Build.ArtifactStagingDirectory)'
       artifactName: 'drop'
       publishLocation: 'Container'
-
