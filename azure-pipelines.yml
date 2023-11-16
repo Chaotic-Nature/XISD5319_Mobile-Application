@@ -12,8 +12,10 @@ jobs:
     inputs:
       workingDirectory: ''
       gradleWrapperFile: 'gradlew'
-      gradleOptions: '-Xmx3072m'
-      publishJUnitResults: true  # Set to true to publish test results to Azure DevOps
+      gradleOptions: '-Xmx3072m -g $GRADLE_USER_HOME'
+      publishJUnitResults: true
+      tasks: 'assembleDebug'
+
 
   - task: PublishBuildArtifacts@1
     inputs:
