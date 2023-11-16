@@ -154,8 +154,6 @@ class AddProcedureActivity : AppCompatActivity() {
                     selectedDate.get(Calendar.DAY_OF_MONTH),
                     hourOfDay, minute
                 )
-
-
             },
             selectedTime.get(Calendar.HOUR_OF_DAY),
             selectedTime.get(Calendar.MINUTE),

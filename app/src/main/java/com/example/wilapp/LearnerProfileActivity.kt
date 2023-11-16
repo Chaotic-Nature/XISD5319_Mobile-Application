@@ -102,6 +102,7 @@ class LearnerProfileActivity : AppCompatActivity() {
     private fun loadProcedures(learnerId: String) {
         // Load procedures from the database and update UI
         binding.profilePb.visibility = View.VISIBLE
+
         database.reference.child("procedures/$learnerId")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
