@@ -12,7 +12,7 @@ jobs:
     inputs:
       workingDirectory: ''
       gradleWrapperFile: 'gradlew'
-      gradleOptions: '-Xmx3072m -g $GRADLE_USER_HOME'
+      gradleOptions: '-Xmx2048m -g $GRADLE_USER_HOME'
       publishJUnitResults: true
       tasks: 'assembleDebug'
 
