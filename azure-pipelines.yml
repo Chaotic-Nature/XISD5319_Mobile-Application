@@ -11,8 +11,8 @@ jobs:
   - task: Gradle@2
     inputs:
       workingDirectory: ''
-      gradleWrapperFile: 'gradlew.bat'
-      gradleOptions: '-Xmx2048m -g $GRADLE_USER_HOME'
+      gradleWrapperFile: 'gradlew'
+      gradleOptions: '-Xmx2048m -Dfile.encoding=UTF-8'
       publishJUnitResults: true
       tasks: 'assembleDebug'
 
