@@ -1,15 +1,15 @@
+# Android
+# Build your Android project with Gradle.
+# Add steps that test, sign, and distribute the APK, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/android
+
 trigger:
 - master
 
 pool:
-  vmImage: 'windows-latest' # Use 'windows-latest' for Windows OS
+  vmImage: 'windows-latest'
 
 steps:
-- task: UseJavaVersion@0
-  inputs:
-    version: '11'
-    addToPath: true
-
 - task: Gradle@2
   inputs:
     workingDirectory: ''
